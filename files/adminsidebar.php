@@ -10,15 +10,15 @@
             </div>
             <ul class="sidebar-nav">
                 <li class="sidebar-item">
-                    <a href="#" class="sidebar-link">
+                    <a href="postcompetition.php" class="sidebar-link">
                         <i class="lni lni-user"></i>
-                        <span>Profile</span>
+                        <span>Post Competition</span>
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a href="#" class="sidebar-link">
+                    <a href="category.php" class="sidebar-link">
                         <i class="lni lni-agenda"></i>
-                        <span>Task</span>
+                        <span>Manage Category</span>
                     </a>
                 </li>
                 <li class="sidebar-item">
@@ -67,6 +67,12 @@
                 </li>
                 <li class="sidebar-item">
                     <a href="#" class="sidebar-link">
+                        <i class="lni lni-user"></i>
+                        <span>Profile</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a href="#" class="sidebar-link">
                         <i class="lni lni-cog"></i>
                         <span>Setting</span>
                     </a>
@@ -92,7 +98,12 @@
                                 <img src="../images/account.png" class="avatar img-fluid" alt="">
                             </a>
                             <div class="dropdown-menu dropdown-menu-end rounded">
-
+                            <a class="dropdown-item" href="login.php">Login</a>
+                            <a class="dropdown-item" href="#">Profile</a>
+                        
+                        <a class="dropdown-item" href="#">Notifications</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">Logout</a>
                             </div>
                         </li>
                     </ul>
