@@ -21,7 +21,7 @@
 <!-- Section Title -->
 <div class="container section-title" data-aos="fade-up">
   <h2>Contact</h2>
-  <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p>
+  <p>Get in touch to start your Kyokushin journey or learn more about our classes and training schedules.</p>
 </div><!-- End Section Title -->
 
 <div class="container" data-aos="fade-up" data-aos-delay="100">
@@ -32,7 +32,7 @@
       <div class="info-item d-flex flex-column justify-content-center align-items-center" data-aos="fade-up" data-aos-delay="200">
         <i class="bi bi-geo-alt"></i>
         <h3>Address</h3>
-        <p>S108 Stephen Street, New York, NY 535022</p>
+        <p>Mauritius</p>
       </div>
     </div><!-- End Info Item -->
 
@@ -40,7 +40,7 @@
       <div class="info-item d-flex flex-column justify-content-center align-items-center" data-aos="fade-up" data-aos-delay="300">
         <i class="bi bi-telephone"></i>
         <h3>Call Us</h3>
-        <p>+1 5589 55488 55</p>
+        <p>+230 0000 0000</p>
       </div>
     </div><!-- End Info Item -->
 

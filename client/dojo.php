@@ -5,13 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Post Competition</title>
     <link href="../css/stylecss.css" rel="stylesheet">
-    <?php include '../files/admincsslib.php' ?> <!-- including libraries -->
+    <?php include '../files/csslib.php' ?> <!-- including libraries -->
     
 </head>
 <body>
 
 <!-- including header and banner -->
-<?php include_once '../files/adminsidebar.php' ?>
+<?php include_once '../files/nav.php' ?>
 
 <br><br><br><br><br><br>
 
@@ -22,16 +22,18 @@
 
 
 <div class="container">
-    <center><h2>Post Competition</h2></center>
+    <center><h2>Manage Dojo</h2></center>
 <label for="txtname"><b>Name</b></label>
 <input type="text" placeholder="Enter name" name="txtname" required>
 
-<label for="textdesc"><b>Description</b></label>
-<input type="text" placeholder="Enter description" name="txtdesc" required>
+<label for="textaddr"><b>Address</b></label>
+<input type="text" placeholder="Enter description" name="txtaddr" required>
+
+<label for="textdesc"><b>Phone Number</b></label>
+<input type="text" placeholder="Enter description" name="txtaddr" required>
 
 <label for="txtimg"><b>Image</b></label>
 <input type="file" name="txtimg"  class="form-control" required><br>
-
 
 
 
@@ -46,12 +48,15 @@
 <button type="button" class="btn btn-warning col-xl-2 pt-2">Cancel</button>
 </div></center>
 </div>
+
+
 </form>
+<br>
 </main>
 
 
 <!-- INCLUDING Footer -->
-<?php include '../files/adminfooter.php' ?>
+<?php include '../files/footer.php' ?>
 
 
     
