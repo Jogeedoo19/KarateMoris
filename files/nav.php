@@ -22,8 +22,8 @@
                   <li><a href="postvideo.php">Manage Video</a></li>
                   <li><a href="postnotes.php">Manage Notes</a></li>
                   <li><a href="postimages.php">Manage Gallery</a></li>
-                  <li><a href="#">Deep Dropdown 4</a></li>
-                  <li><a href="#">Deep Dropdown 5</a></li>
+                  <!-- <li><a href="#">Deep Dropdown 4</a></li>
+                  <li><a href="#">Deep Dropdown 5</a></li> -->
                 </ul>
               </li>
               <li class="dropdown"><a href="#"><span>Classes & Events</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
@@ -32,12 +32,12 @@
                   <li><a href="dojo.php">Manage Dojo</a></li>
                   <li><a href="#">Manage Class Schedule</a></li>
                   <li><a href="#">Manage Booking</a></li>
-                  <li><a href="#">Deep Dropdown 5</a></li>
+                <!--   <li><a href="#">Deep Dropdown 5</a></li> -->
                 </ul>
               </li>
-              <li><a href="#">Dropdown 2</a></li>
+             <!--  <li><a href="#">Dropdown 2</a></li>
               <li><a href="#">Dropdown 3</a></li>
-              <li><a href="#">Dropdown 4</a></li>
+              <li><a href="#">Dropdown 4</a></li> -->
             </ul>
           </li>
           <li><a href="contact.php">Contact</a></li>
