@@ -1,3 +1,9 @@
+<?php
+require_once "../db/pdo.php";
+
+
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -33,7 +39,7 @@
  <input type="text" placeholder="Enter Username" name="txtuname" required>
 
  <label for="txtdob"><b>Date of Birth</b></label>
- <input type="text" placeholder="Enter Date of Birth" name="txtdob" required>
+ <input type="date" class="form-control" placeholder="Enter Date of Birth" name="txtdob" required><br>
 
  <label for="email"><b>Address</b></label>
  <input type="text" placeholder="Enter Address" name="txtaddress" required>

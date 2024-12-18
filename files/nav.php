@@ -11,7 +11,7 @@
         <ul>
           <li><a href="index.php" class="active">Home</a></li>
           <li><a href="about.php">About</a></li>
-          <li><a href="index.html#features">Features</a></li>
+          <li><a href="index.html#features">Challenges</a></li>
           <li><a href="index.html#services">Services</a></li>
           <li><a href="index.html#pricing">Pricing</a></li>
           <li class="dropdown"><a href="#"><span>Community</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
