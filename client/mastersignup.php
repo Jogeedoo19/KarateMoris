@@ -64,21 +64,21 @@ if (isset($_POST['signup'])) {
     }
 
     // Check if email or username already exists
-    $stmt = $pdo->prepare("SELECT user_id FROM user WHERE email = ? OR username = ?");
+    $stmt = $pdo->prepare("SELECT master_id FROM master WHERE email = ? OR username = ?");
     $stmt->execute([$email, $username]);
     if ($stmt->rowCount() > 0) $errors[] = "Email or Username already exists.";
 
     // If no errors, proceed with registration
     if (empty($errors)) {
         try {
-            $sql = "INSERT INTO user (first_name, last_name, username, email, password, address, status, image) 
+            $sql = "INSERT INTO master (first_name, last_name, username, email, password, address, status, image) 
                     VALUES (?, ?, ?, ?, ?, ?, 1, ?)";
             $stmt = $pdo->prepare($sql);
             $hashed_password = password_hash($password, PASSWORD_DEFAULT);
             
             if ($stmt->execute([$first_name, $last_name, $username, $email, $hashed_password, $address, $image_name])) {
                 $_SESSION['success'] = "Registration successful! Please login.";
-                header("Location: login.php");
+                header("Location: masterlogin.php");
                 exit();
             } else {
                 $_SESSION['error'] = "Registration failed. Please try again.";

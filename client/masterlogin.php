@@ -3,7 +3,7 @@ require_once '../db/util.php';
 require_once '../db/pdo.php';
 session_start();
 
-if(isset($_SESSION['user_id'])){
+if(isset($_SESSION['master_id'])){
     header('Location: index.php');
     return;
 }
@@ -20,17 +20,17 @@ if(isset($_POST['btnlogin'])){
 
     if(strlen($uname) < 1 || strlen($psw) < 1){
         $_SESSION['error'] = 'Username and password are required';
-        header('Location: login.php');
+        header('Location: masterlogin.php');
         return;
     }
 
-    $stmt = $pdo->prepare('SELECT * FROM user WHERE username = :uname');
+    $stmt = $pdo->prepare('SELECT * FROM master WHERE username = :uname');
     $stmt->execute(array(':uname' => $uname));
     $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
     if($row === false){
         $_SESSION['error'] = 'Invalid username';
-        header('Location: login.php');
+        header('Location: masterlogin.php');
         return;
     }
 
@@ -39,16 +39,16 @@ if(isset($_POST['btnlogin'])){
     $check = password_verify($psw, $row['password']);
     if($check === false){
         $_SESSION['error'] = 'Incorrect password';
-        header('Location: login.php');
+        header('Location: masterlogin.php');
         return;
     }
 
-    $_SESSION['user_id'] = $row['user_id'];
+    $_SESSION['master_id'] = $row['master_id'];
     $_SESSION['username'] = $row['username'];
     $_SESSION['successmsg'] = 'Logged in successfully';
 
     if($remember){
-        setcookie('user_id', $row['user_id'], time() + 60*60*24*30);
+        setcookie('master_id', $row['master_id'], time() + 60*60*24*30);
         setcookie('username', $row['username'], time() + 60*60*24*30);
     }
 
@@ -68,7 +68,6 @@ if(isset($_POST['btnlogin'])){
 <body>
     <!-- Include header and navigation -->
     <?php include_once '../files/nav.php'; ?>
-    <br><br>
 
     <main class="main">
         <div class="container col-xl-4 col-lg-6">
