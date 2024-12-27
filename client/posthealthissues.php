@@ -20,69 +20,69 @@ if (!$userId) {
 
 // Handle Cancel button
 if (isset($_POST['btncancel'])) {
-    header("Location: posttestimonial.php");
+    header("Location: posthealthissues.php");
     return;
 }
 
 // Handle Add/Update/Delete actions
 if (isset($_POST['txtmsg'])) {
-    $testimonialId = $_POST['test_id'] ?? null;
+    $healthissuesId = $_POST['hissues_id'] ?? null;
     $message = $_POST['txtmsg'];
 
     // Validate input
     if (empty($message)) {
-        $_SESSION["error"] = "Message cannot be empty.";
-        header("Location: posttestimonial.php");
+        $_SESSION["error"] = "Description cannot be empty.";
+        header("Location: posthealthissues.php");
         return;
     }
 
 
     // Handle Update action
     if (isset($_POST['btnupdate'])) {
-        if ($testimonialId) {
+        if ($healthissuesId) {
             try {
-                $sql = "UPDATE testimonial SET message = :message WHERE test_id = :test_id AND user_id = :user_id";
+                $sql = "UPDATE healthissues SET description = :message WHERE hissues_id = :hissues_id AND user_id = :user_id";
                 $stmt = $pdo->prepare($sql);
-                $stmt->execute([':message' => $message, ':test_id' => $testimonialId, ':user_id' => $userId]);
-                $_SESSION["successmsg"] = "Testimonial Updated";
+                $stmt->execute([':message' => $message, ':hissues_id' => $healthissuesId, ':user_id' => $userId]);
+                $_SESSION["successmsg"] = "Health issues Updated";
             } catch (Exception $e) {
-                $_SESSION['error'] = "Error updating testimonial: " . $e->getMessage();
+                $_SESSION['error'] = "Error updating health issues: " . $e->getMessage();
             }
         } else {
-            $_SESSION["error"] = "Invalid testimonial selected for update.";
+            $_SESSION["error"] = "Invalid health issues selected for update.";
         }
-        header("Location: posttestimonial.php");
+        header("Location: posthealthissues.php");
         return;
     }
     // Handle Delete action
     if (isset($_POST['btndelete'])) {
-        if ($testimonialId) {
+        if ($healthissuesId) {
             try {
-                $sql = "DELETE FROM testimonial WHERE test_id = :test_id AND user_id = :user_id";
+                $sql = "DELETE FROM healthissues WHERE hissues_id = :hissues_id AND user_id = :user_id";
                 $stmt = $pdo->prepare($sql);
-                $stmt->execute([':test_id' => $testimonialId, ':user_id' => $userId]);
-                $_SESSION["successmsg"] = "Testimonial Deleted";
+                $stmt->execute([':hissues_id' => $healthissuesId, ':user_id' => $userId]);
+                $_SESSION["successmsg"] = "Health issues Deleted";
             } catch (Exception $e) {
-                $_SESSION['error'] = "Error deleting testimonial: " . $e->getMessage();
+                $_SESSION['error'] = "Error deleting health issues: " . $e->getMessage();
             }
         } else {
-            $_SESSION["error"] = "Invalid testimonial selected for deletion.";
+            $_SESSION["error"] = "Invalid health issues selected for deletion.";
         }
-        header("Location: posttestimonial.php");
+        header("Location: posthealthissues.php");
         return;
     }
 
     // Handle Add action
     if (isset($_POST['btnpost'])) {
         try {
-            $sql = "INSERT INTO testimonial (message, user_id) VALUES (:message, :user_id)";
+            $sql = "INSERT INTO healthissues (description, user_id) VALUES (:message, :user_id)";
             $stmt = $pdo->prepare($sql);
             $stmt->execute([':message' => $message, ':user_id' => $userId]);
-            $_SESSION["successmsg"] = "Testimonial Added";
+            $_SESSION["successmsg"] = "Health issues Added";
         } catch (Exception $e) {
-            $_SESSION['error'] = "Error adding testimonial: " . $e->getMessage();
+            $_SESSION['error'] = "Error adding health issues: " . $e->getMessage();
         }
-        header("Location: posttestimonial.php");
+        header("Location: posthealthissues.php");
         return;
     }
 }
@@ -117,13 +117,13 @@ flashMessages();
 </h3>
 
 <div class="container col-xl-4 col-lg-6">
-<form id="frmtest" class="row" method="post" enctype="multipart/form-data" style="border: 3px solid #f1f1f1;">
-<input type="hidden" name="test_id"> <!-- Hidden field for testimonial ID -->
+<form id="frmhissues" class="row" method="post" enctype="multipart/form-data" style="border: 3px solid #f1f1f1;">
+<input type="hidden" name="hissues_id"> <!-- Hidden field for testimonial ID -->
 
 
 <div class="container">
-    <center><h2>Post Testimonial</h2></center>
-<label for="txtmsg"><b>Message</b></label>
+    <center><h2>Post Health Issues</h2></center>
+<label for="txtmsg"><b>Description of Health Issues</b></label>
 <input type="text" placeholder="Enter name" name="txtmsg" required>
 
 
@@ -144,18 +144,18 @@ flashMessages();
 <div class="row mt-3">
 <table class="table table-dark table-hover table-striped w-75">
     <thead>
-        <th>Testimonial Message</th>
+        <th>Description of Health Issues</th>
         <th>Action</th>
     </thead>
     <tbody>
         <?php
-        $stmt = $pdo->prepare("SELECT * FROM testimonial WHERE user_id = :user_id");
+        $stmt = $pdo->prepare("SELECT * FROM healthissues WHERE user_id = :user_id");
         $stmt->execute([':user_id' => $_SESSION['user_id']]);
         while ($rows = $stmt->fetch(PDO::FETCH_ASSOC)) {
             echo "<tr>";
-            echo "<td>" . htmlentities($rows["message"]) . "</td>";
+            echo "<td>" . htmlentities($rows["description"]) . "</td>";
             echo "<td>
-                <button class='btn btn-info' onclick='selectTestimonial(" . $rows["test_id"] . ", `" . addslashes($rows["message"]) . "`)'>Edit</button>
+                <button class='btn btn-info' onclick='selectHealthIssues(" . $rows["hissues_id"] . ", `" . addslashes($rows["description"]) . "`)'>Edit</button>
             </td>";
             echo "</tr>";
         }
@@ -167,18 +167,18 @@ flashMessages();
 
 </main>
 <script>
-function selectTestimonial(testId, message) {
+function selectHealthIssues($healthissuesId, message) {
     // Populate the hidden test_id field
-    document.querySelector('input[name="test_id"]').value = testId;
+    document.querySelector('input[name="hissues_id"]').value = $healthissuesId;
 
     // Populate the txtmsg field
     document.querySelector('input[name="txtmsg"]').value = message;
 
     // Optional: Scroll to the form or highlight it
-    document.getElementById('frmtest').scrollIntoView({ behavior: 'smooth' });
+    document.getElementById('frmhissues').scrollIntoView({ behavior: 'smooth' });
 }
 function confirmDelete() {
-    return confirm('Are you sure you want to delete this testimonial?');
+    return confirm('Are you sure you want to delete this health issues?');
 }
 </script>
 

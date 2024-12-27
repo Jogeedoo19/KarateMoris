@@ -81,6 +81,23 @@ function validateConfirmPass() {
 }
 
 
+function checkUserAuth(){
+    if(isset($_SESSION['user_id'])){
+        header('Location: index.php');
+        return;
+    }
+
+}
+
+function checkMasterAuth(){
+    if(isset($_SESSION['master_id'])){
+        header('Location: index.php');
+        return;
+    }
+
+}
+
+
     
 
 ?>
