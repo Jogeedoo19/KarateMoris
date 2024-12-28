@@ -1,3 +1,27 @@
+<?php
+require_once '../db/util.php';
+require_once '../db/pdo.php';
+session_start();
+
+try {
+  $sql = "SELECT * FROM testimonial t
+          INNER JOIN user u ON t.user_id = u.user_id
+          WHERE u.status = 1";
+  $stmt = $pdo->query($sql);
+  $testimonials = $stmt->fetchAll(PDO::FETCH_ASSOC);
+} catch (Exception $e) {
+  die("Error fetching testimonials: " . $e->getMessage());
+}
+try{
+  $sql2 = "SELECT * FROM announcement a 
+          INNER JOIN master m ON a.master_id = m.master_id
+          WHERE m.status = 1";
+          $stmt = $pdo->query($sql2);
+          $announcements = $stmt->fetchAll(PDO::FETCH_ASSOC);
+} catch (Exception $e) {
+  die("Error fetching announcements: " . $e->getMessage());
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,20 +48,23 @@
 
       <div class="container">
 
-        <div class="row gy-4">
+     <center><h2>Announcements</h2></center> 
 
+        <div class="row gy-4">
+        <?php foreach ($announcements as $announcement): ?>
           <div class="col-xl-4 col-lg-6" data-aos="fade-up" data-aos-delay="100">
             <div class="service-item d-flex">
-              <div class="icon flex-shrink-0"><i class="bi bi-briefcase"></i></div>
+              <div class="icon flex-shrink-0"><img src="../client/uploads/<?php echo $announcement['image'] ?>" class="testimonial-img" style="width: 60px; height: 60px; object-fit: cover; border-radius: 50%;"></div>
               <div>
-                <h4 class="title"><a href="#" class="stretched-link">Lorem Ipsum</a></h4>
-                <p class="description">Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi</p>
+                <h4 class="title"><a href="#" class="stretched-link"><?= htmlspecialchars($announcement['first_name'] . ' ' . $announcement['last_name']) ?></a></h4>
+                <p class="description"><?= htmlspecialchars($announcement['description']) ?></p>
               </div>
             </div>
           </div>
+          <?php endforeach; ?>
           <!-- End Service Item -->
 
-          <div class="col-xl-4 col-lg-6" data-aos="fade-up" data-aos-delay="200">
+          <!-- <div class="col-xl-4 col-lg-6" data-aos="fade-up" data-aos-delay="200">
             <div class="service-item d-flex">
               <div class="icon flex-shrink-0"><i class="bi bi-card-checklist"></i></div>
               <div>
@@ -45,7 +72,7 @@
                 <p class="description">Minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip exa</p>
               </div>
             </div>
-          </div><!-- End Service Item -->
+          </div>
 
           <div class="col-xl-4 col-lg-6" data-aos="fade-up" data-aos-delay="300">
             <div class="service-item d-flex">
@@ -55,7 +82,7 @@
                 <p class="description">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum</p>
               </div>
             </div>
-          </div><!-- End Service Item -->
+          </div> -->
 
         </div>
 
@@ -512,24 +539,23 @@ Osu!
             }
           </script>
           <div class="swiper-wrapper">
-
+          <?php foreach ($testimonials as $testimonial): ?>
             <div class="swiper-slide">
               <div class="testimonial-item">
                 <div class="stars">
                   <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
                 </div>
                 <p>
-                  Proin iaculis purus consequat sem cure digni ssim donec porttitora entum suscipit rhoncus. Accusantium quam, ultricies eget id, aliquam eget nibh et. Maecen aliquam, risus at semper.
+                <p><?= htmlspecialchars($testimonial['message']) ?></p>
                 </p>
                 <div class="profile mt-auto">
-                  <img src="../assets/img/testimonials/testimonials-1.jpg" class="testimonial-img" alt="">
-                  <h3>Saul Goodman</h3>
-                  <h4>Ceo &amp; Founder</h4>
+                <img src="../client/uploads/<?php echo $testimonial['image'] ?>" class="testimonial-img" alt="Profile of <?= htmlspecialchars($testimonial['first_name']) ?>">
+                <h3><?= htmlspecialchars($testimonial['first_name'] . ' ' . $testimonial['last_name']) ?></h3>
                 </div>
               </div>
             </div><!-- End testimonial item -->
-
-            <div class="swiper-slide">
+            <?php endforeach; ?>
+          <!--   <div class="swiper-slide">
               <div class="testimonial-item">
                 <div class="stars">
                   <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
@@ -543,7 +569,7 @@ Osu!
                   <h4>Designer</h4>
                 </div>
               </div>
-            </div><!-- End testimonial item -->
+            </div>
 
             <div class="swiper-slide">
               <div class="testimonial-item">
@@ -559,7 +585,7 @@ Osu!
                   <h4>Store Owner</h4>
                 </div>
               </div>
-            </div><!-- End testimonial item -->
+            </div>
 
             <div class="swiper-slide">
               <div class="testimonial-item">
@@ -575,7 +601,7 @@ Osu!
                   <h4>Freelancer</h4>
                 </div>
               </div>
-            </div><!-- End testimonial item -->
+            </div>
 
             <div class="swiper-slide">
               <div class="testimonial-item">
@@ -591,7 +617,7 @@ Osu!
                   <h4>Entrepreneur</h4>
                 </div>
               </div>
-            </div><!-- End testimonial item -->
+            </div> -->
 
           </div>
           <div class="swiper-pagination"></div>

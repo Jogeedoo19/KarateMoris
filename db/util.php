@@ -96,8 +96,34 @@ function checkMasterAuth(){
     }
 
 }
+// view video
+function getYoutubeEmbedUrl($url) {
+    $video_id = '';
+    
+    // Pattern for various YouTube URL formats
+    $patterns = [
+        '/youtube\.com\/watch\?v=([^\&\?\/]+)/',
+        '/youtube\.com\/embed\/([^\&\?\/]+)/',
+        '/youtube\.com\/v\/([^\&\?\/]+)/',
+        '/youtu\.be\/([^\&\?\/]+)/'
+    ];
+    
+    foreach ($patterns as $pattern) {
+        if (preg_match($pattern, $url, $matches)) {
+            $video_id = $matches[1];
+            break;
+        }
+    }
+    
+    if ($video_id) {
+        return 'https://www.youtube.com/embed/' . $video_id;
+    }
+    
+    return '';
+}
 
-
+// Then use it like this:
+//$final = getYoutubeEmbedUrl($video['videourl']);
     
 
 ?>

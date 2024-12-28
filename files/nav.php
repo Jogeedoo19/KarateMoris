@@ -22,13 +22,17 @@ session_start();
             <ul>
               <li><a href="posttestimonial.php">Post Testimonial</a></li>
               <li><a href="posthealthissues.php">Post Health Issues</a></li>
+              <li><a href="viewhealthissues.php"> Health Issues</a></li>
               <li class="dropdown"><a href="#"><span>Media & Resources</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+              
                 <ul>
                   <li><a href="postvideo.php">Manage Video</a></li>
                   <li><a href="postnotes.php">Manage Notes</a></li>
                   <li><a href="postimages.php">Manage Gallery</a></li>
                   <li><a href="postannouncement.php">Manage Announcemnt</a></li>
-                  <!-- <li><a href="#">Deep Dropdown 5</a></li> -->
+                  <li><a href="viewvideo.php">View Video</a></li> 
+                  <li><a href="viewnotes.php">View Notes</a></li>
+                  <li><a href="gallery.php">View Gallery</a></li>
                 </ul>
               </li>
               <li class="dropdown"><a href="#"><span>Classes & Events</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
@@ -38,6 +42,8 @@ session_start();
                   <li><a href="#">Manage Class Schedule</a></li>
                   <li><a href="#">Manage Booking</a></li>
                 <li><a href="postmembershipcat.php">Manage membership</a></li> 
+                <li><a href="viewdojo.php">Dojo</a></li>
+                <li><a href="viewcompetition.php">Competition</a></li>
                 </ul>
               </li>
              <!--  <li><a href="#">Dropdown 2</a></li>
