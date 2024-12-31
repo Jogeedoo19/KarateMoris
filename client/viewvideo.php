@@ -8,12 +8,12 @@ $stmt = $pdo->prepare("
     SELECT 
         video.*, 
         category.cat_name, 
-        user.first_name, 
-        user.last_name, 
-        user.image 
+        master.first_name, 
+        master.last_name, 
+        master.image 
     FROM video 
     JOIN category ON video.cat_id = category.cat_id 
-    JOIN user ON video.master_id = user.user_id
+    JOIN master ON video.master_id = master.master_id
 ");
 $stmt->execute();
 $videos = $stmt->fetchAll(PDO::FETCH_ASSOC);

@@ -3,67 +3,59 @@ require_once '../db/util.php';
 require_once '../db/pdo.php';
 session_start();
 
-if (isset($_SESSION['master_id'])) {
-    header('Location: index.php');
+if(isset($_SESSION['admin_id'])){
+    header('Location: dashboard.php');
     return;
 }
 
-if (isset($_POST['btncancel'])) {
-    header('Location: index.php');
+if(isset($_POST['btncancel'])){
+    header('Location: dashboard.php');
     return;
 }
 
-if (isset($_POST['btnlogin'])) {
+if(isset($_POST['btnlogin'])){
     $uname = $_POST['txtuname'];
     $psw = $_POST['txtpsw'];
     $remember = $_POST['remember'];
 
-    if (strlen($uname) < 1 || strlen($psw) < 1) {
+    if(strlen($uname) < 1 || strlen($psw) < 1){
         $_SESSION['error'] = 'Username and password are required';
-        header('Location: masterlogin.php');
+        header('Location: login.php');
         return;
     }
 
-    $stmt = $pdo->prepare('SELECT * FROM master WHERE username = :uname');
-    $stmt->execute([':uname' => $uname]);
+    $stmt = $pdo->prepare('SELECT * FROM admin WHERE username = :uname');
+    $stmt->execute(array(':uname' => $uname));
     $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
-    if ($row === false) {
+    if($row === false){
         $_SESSION['error'] = 'Invalid username';
-        header('Location: masterlogin.php');
+        header('Location: login.php');
         return;
     }
 
-    // Check if registration is approved
-    if ($row['status'] == 0) {
-        $_SESSION['error'] = 'Your account is not approved yet. Please contact the admin.';
-        header('Location: masterlogin.php');
-        return;
-    }
+    $check = hash('md5', $psw);
 
-    // Verify password
     $check = password_verify($psw, $row['password']);
-    if ($check === false) {
+    if($check === false){
         $_SESSION['error'] = 'Incorrect password';
-        header('Location: masterlogin.php');
+        header('Location: login.php');
         return;
     }
 
-    // Set session variables and handle "remember me"
-    $_SESSION['master_id'] = $row['master_id'];
+    $_SESSION['admin_id'] = $row['admin_id'];
     $_SESSION['username'] = $row['username'];
     $_SESSION['successmsg'] = 'Logged in successfully';
 
-    if ($remember) {
-        setcookie('master_id', $row['master_id'], time() + 60 * 60 * 24 * 30);
-        setcookie('username', $row['username'], time() + 60 * 60 * 24 * 30);
+    if($remember){
+        setcookie('admin_id', $row['admin_id'], time() + 60*60*24*30);
+        setcookie('username', $row['username'], time() + 60*60*24*30);
     }
 
-    header('Location: masterprofile.php');
+    header('Location: dashboard.php');
     return;
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -76,13 +68,13 @@ if (isset($_POST['btnlogin'])) {
 <body>
     <!-- Include header and navigation -->
     <?php include_once '../files/nav.php'; ?>
-<br><br><br><br>
+    <br><br>
+
     <main class="main">
         <div class="container col-xl-4 col-lg-6">
             <form method="post" id="frmlogin" method="post" onsubmit="return remem()" enctype="multipart/form-data">
                 <div class="imgcontainer">
                     <h1>Login</h1>
-                    <h3><?php flashMessages(); ?></h3>
                 </div>
 
               

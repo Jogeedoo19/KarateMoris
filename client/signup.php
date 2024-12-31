@@ -117,7 +117,7 @@ if (isset($_POST['signup'])) {
     <div class="container">
         <div class="form-container">
             <h2 class="text-center mb-4">Sign Up</h2>
-            <?php flashMessage(); ?>
+            <h3><?php flashMessages(); ?></h3>
             <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="POST" enctype="multipart/form-data">
                 <div class="row mb-3">
                     <div class="col-md-6">

@@ -61,6 +61,7 @@ session_start();
         if (isset($_SESSION['master_id'])) {
             // Master user is logged in
             echo '<li><a href="logout.php">Logout</a></li>';
+            echo '<li><a href="masterprofile.php">Profile</a></li>';
         } else {
             // Master user is not logged in
             echo '<a class="btn btn-primary" href="mastersignup.php">Sign up</a>';
@@ -81,6 +82,7 @@ session_start();
       if(isset($_SESSION['user_id'])){
         // User is logged in
         echo '<a class="btn btn-danger" href="logout.php">Logout</a>';
+        echo '<a class="btn btn-success" href="userprofile.php">Profile</a>';
      
       
     } else {

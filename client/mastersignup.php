@@ -72,7 +72,7 @@ if (isset($_POST['signup'])) {
     if (empty($errors)) {
         try {
             $sql = "INSERT INTO master (first_name, last_name, username, email, password, address, status, image) 
-                    VALUES (?, ?, ?, ?, ?, ?, 1, ?)";
+                    VALUES (?, ?, ?, ?, ?, ?, 0, ?)";
             $stmt = $pdo->prepare($sql);
             $hashed_password = password_hash($password, PASSWORD_DEFAULT);
             
@@ -89,7 +89,11 @@ if (isset($_POST['signup'])) {
     } else {
         $_SESSION['error'] = implode("<br>", $errors);
     }
+    header("Location: masterlogin.php");
+    return;
 }
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">

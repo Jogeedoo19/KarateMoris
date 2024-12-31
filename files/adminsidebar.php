@@ -1,3 +1,8 @@
+<?php
+require_once '../db/util.php';
+require_once '../db/pdo.php';
+session_start();
+?>
 <div class="wrapper">
         <aside id="sidebar">
             <div class="d-flex">
@@ -25,14 +30,14 @@
                     <a href="#" class="sidebar-link collapsed has-dropdown" data-bs-toggle="collapse"
                         data-bs-target="#auth" aria-expanded="false" aria-controls="auth">
                         <i class="lni lni-protection"></i>
-                        <span>Auth</span>
+                        <span>Manage User</span>
                     </a>
                     <ul id="auth" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
                         <li class="sidebar-item">
-                            <a href="#" class="sidebar-link">Login</a>
+                            <a href="managemasterregistration.php" class="sidebar-link">Accept/Reject Master Registration</a>
                         </li>
                         <li class="sidebar-item">
-                            <a href="#" class="sidebar-link">Register</a>
+                            <a href="manageuser.php" class="sidebar-link">Block/Unblock Users</a>
                         </li>
                     </ul>
                 </li>
@@ -85,8 +90,10 @@
                 </a>
             </div>
         </aside>
+        
 
         <div class="main">
+            
             <nav class="navbar navbar-expand px-4 py-3">
                 <form action="#" class="d-none d-sm-inline-block">
 
@@ -98,12 +105,24 @@
                                 <img src="../images/account.png" class="avatar img-fluid" alt="">
                             </a>
                             <div class="dropdown-menu dropdown-menu-end rounded">
-                            <a class="dropdown-item" href="login.php">Login</a>
+                            <?php
+                            
+                            
+                                if (isset($_SESSION['admin_id'])) {
+                                    // Admin is logged in
+                                    echo '<a class="dropdown-item" href="adminlogout.php">Logout</a>';
+                                } else {
+                                    // Admin is not logged in
+                                    
+                                    echo '<a class="dropdown-item" href="adminlogin.php">Login</a>';
+                                }
+                                ?>
+                            <!-- <a class="" href="login.php">Login</a>
                             <a class="dropdown-item" href="#">Profile</a>
                         
                         <a class="dropdown-item" href="#">Notifications</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Logout</a>
+                        <a  href="#">Logout</a> -->
                             </div>
                         </li>
                     </ul>

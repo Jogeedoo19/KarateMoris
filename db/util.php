@@ -80,6 +80,7 @@ function validateConfirmPass() {
     return null;
 }
 
+//Authentication
 
 function checkUserAuth(){
     if(isset($_SESSION['user_id'])){
@@ -92,6 +93,14 @@ function checkUserAuth(){
 function checkMasterAuth(){
     if(isset($_SESSION['master_id'])){
         header('Location: index.php');
+        return;
+    }
+
+}
+
+function checkAdminAuth(){
+    if(isset($_SESSION['admin_id'])){
+        header('Location: dashboard.php');
         return;
     }
 

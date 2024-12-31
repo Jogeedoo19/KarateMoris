@@ -52,7 +52,7 @@ if(isset($_POST['btnlogin'])){
         setcookie('username', $row['username'], time() + 60*60*24*30);
     }
 
-    header('Location: uprofile.php');
+    header('Location: userprofile.php');
     return;
 }
 ?>
@@ -75,6 +75,7 @@ if(isset($_POST['btnlogin'])){
             <form method="post" id="frmlogin" method="post" onsubmit="return remem()" enctype="multipart/form-data">
                 <div class="imgcontainer">
                     <h1>Login</h1>
+                    <h3><?php flashMessages(); ?></h3>
                 </div>
 
               

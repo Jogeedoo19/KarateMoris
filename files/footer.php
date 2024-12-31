@@ -28,6 +28,7 @@
         <li><a href="#">Services</a></li>
         <li><a href="#">Terms of service</a></li>
         <li><a href="#">Privacy policy</a></li>
+        <li><a href="../admin/adminlogin.php">Admin</a></li>
       </ul>
     </div>
 
