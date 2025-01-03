@@ -44,6 +44,7 @@ session_start();
                 <li><a href="postmembershipcat.php">Manage membership</a></li> 
                 <li><a href="viewdojo.php">Dojo</a></li>
                 <li><a href="viewcompetition.php">Competition</a></li>
+                <li><a href="manage_booking.php">Your booking</a></li>
                 </ul>
               </li>
              <!--  <li><a href="#">Dropdown 2</a></li>

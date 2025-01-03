@@ -2,6 +2,17 @@
 require_once "../db/pdo.php";
 require_once "../db/util.php";
 
+session_start();
+
+// Redirect to login if user is not logged in
+if (!isset($_SESSION['user_id'])) {
+    $_SESSION['error'] = "You must log in first.";
+    header("Location: login.php");
+    return;
+}
+
+$userId = $_SESSION['user_id'];
+
 // Fetch all notes with their associated categories and masters
 $stmt = $pdo->prepare("
     SELECT 
@@ -67,7 +78,7 @@ $dojos = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 <h5 class="card-title"><?= htmlentities($dojo['name']) ?></h5>
                 <p class="card-text">Address: <?= htmlentities($dojo['address']) ?></p>
                 <p class="text-muted">Phone Number: <?= htmlentities($dojo['phonenumber']) ?></p>
-                <button type="button" class="btn btn-sm btn-outline-primary"><a href="">Book</a></button>
+                <a href="book_training.php?dojo_id=<?= htmlentities($dojo['dojo_id']) ?>" class="btn btn-primary">Book Now</a>
             </div>
 
             <!-- Footer -->

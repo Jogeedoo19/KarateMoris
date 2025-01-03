@@ -350,13 +350,13 @@ Osu!
 
     
     <!-- Pricing Section -->
-    <section id="pricing" class="pricing section">
+    <!-- <section id="pricing" class="pricing section">
 
-      <!-- Section Title -->
+     
       <div class="container section-title" data-aos="fade-up">
         <h2>Pricing</h2>
         <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p>
-      </div><!-- End Section Title -->
+      </div>
 
       <div class="container">
 
@@ -379,7 +379,7 @@ Osu!
                 <li class="na"><i class="bi bi-x"></i> <span>Iure nihil dolores recusandae odit voluptatibus</span></li>
               </ul>
             </div>
-          </div><!-- End Pricing Item -->
+          </div>
 
           <div class="col-lg-4" data-aos="zoom-in" data-aos-delay="200">
             <div class="pricing-item featured">
@@ -399,7 +399,7 @@ Osu!
                 <li class="na"><i class="bi bi-x"></i> <span>Iure nihil dolores recusandae odit voluptatibus</span></li>
               </ul>
             </div>
-          </div><!-- End Pricing Item -->
+          </div>
 
           <div class="col-lg-4" data-aos="zoom-in" data-aos-delay="300">
             <div class="pricing-item">
@@ -418,13 +418,13 @@ Osu!
                 <li><i class="bi bi-check"></i> <span>Iure nihil dolores recusandae odit voluptatibus</span></li>
               </ul>
             </div>
-          </div><!-- End Pricing Item -->
+          </div> --><!-- End Pricing Item -->
 
-        </div>
+       <!--  </div> --> 
 
-      </div>
+    <!--   </div>
 
-    </section><!-- /Pricing Section -->
+    </section> --><!-- /Pricing Section -->
 
     <!-- Faq Section -->
    <!--  <section id="faq" class="faq section">

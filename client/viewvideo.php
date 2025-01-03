@@ -2,6 +2,17 @@
 require_once "../db/pdo.php";
 require_once "../db/util.php";
 
+session_start();
+
+// Redirect to login if user is not logged in
+if (!isset($_SESSION['user_id'])) {
+    $_SESSION['error'] = "You must log in first.";
+    header("Location: login.php");
+    return;
+}
+
+$userId = $_SESSION['user_id'];
+
 
 // Fetch all videos with their associated categories and masters
 $stmt = $pdo->prepare("

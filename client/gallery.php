@@ -16,17 +16,7 @@ $galleries = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <link href="../css/stylecss.css" rel="stylesheet">
     <?php include '../files/csslib.php'; ?> <!-- Include Bootstrap and other libraries -->
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f5f5f5;
-            padding: 2rem;
-        }
+      
 
         .gallery-container {
             max-width: 1200px;
@@ -97,10 +87,7 @@ $galleries = $stmt->fetchAll(PDO::FETCH_ASSOC);
         }
 
         @media (max-width: 480px) {
-            body {
-                padding: 1rem;
-            }
-
+           
             .gallery-grid {
                 grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
                 gap: 10px;
