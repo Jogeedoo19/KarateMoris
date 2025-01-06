@@ -20,6 +20,7 @@
   
  
   <link rel="stylesheet" href="../static/css/main.css">
-  <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstraptheme.min.css" integrity="sha384-
+ <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstraptheme.min.css" integrity="sha384-
 fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" 
-crossorigin="anonymous"> -->
+crossorigin="anonymous"> 
+ -->

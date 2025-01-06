@@ -20,31 +20,57 @@ session_start();
           <li><a href="index.html#pricing">Pricing</a></li>
           <li class="dropdown"><a href="#"><span>Community</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
             <ul>
-              <li><a href="posttestimonial.php">Post Testimonial</a></li>
-              <li><a href="posthealthissues.php">Post Health Issues</a></li>
-              <li><a href="viewhealthissues.php"> Health Issues</a></li>
+            <?php
+                if(isset($_SESSION['user_id'])){
+              echo '<li><a href="posttestimonial.php">Post Testimonial</a></li>';
+               
+             echo '<li><a href="posthealthissues.php">Post Health Issues</a></li>';
+            }
+            ?>
+            <?php
+            if(isset($_SESSION['master_id'])){
+             echo '<li><a href="viewhealthissues.php"> Health Issues</a></li>';
+            }
+            ?>
               <li class="dropdown"><a href="#"><span>Media & Resources</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
               
                 <ul>
-                  <li><a href="postvideo.php">Manage Video</a></li>
-                  <li><a href="postnotes.php">Manage Notes</a></li>
-                  <li><a href="postimages.php">Manage Gallery</a></li>
-                  <li><a href="postannouncement.php">Manage Announcemnt</a></li>
-                  <li><a href="viewvideo.php">View Video</a></li> 
-                  <li><a href="viewnotes.php">View Notes</a></li>
-                  <li><a href="gallery.php">View Gallery</a></li>
+                <?php
+      if(isset($_SESSION['master_id'])){
+        echo  '<li><a href="postvideo.php">Manage Video</a></li>';
+        echo '<li><a href="postnotes.php">Manage Notes</a></li>';
+        echo '<li><a href="postimages.php">Manage Gallery</a></li>';
+        echo '<li><a href="postannouncement.php">Manage Announcemnt</a></li>';
+      }
+      ?>
+      <?php
+      if(isset($_SESSION['user_id'])){
+        echo '<li><a href="viewvideo.php">Video</a></li>'; 
+        echo  '<li><a href="viewnotes.php">Notes</a></li>';
+        echo  '<li><a href="gallery.php">Gallery</a></li>';
+      }
+      ?>
                 </ul>
               </li>
               <li class="dropdown"><a href="#"><span>Classes & Events</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
                 <ul>
-                  <li><a href="postcompetition.php">Manage Competition</a></li>
-                  <li><a href="dojo.php">Manage Dojo</a></li>
-                  <li><a href="#">Manage Class Schedule</a></li>
-                  <li><a href="#">Manage Booking</a></li>
-                <li><a href="postmembershipcat.php">Manage membership</a></li> 
-                <li><a href="viewdojo.php">Dojo</a></li>
-                <li><a href="viewcompetition.php">Competition</a></li>
-                <li><a href="manage_booking.php">Your booking</a></li>
+                <?php
+                if(isset($_SESSION['master_id'])){
+                  echo  '<li><a href="postcompetition.php">Manage Competition</a></li>';
+                  echo  '<li><a href="dojo.php">Manage Dojo</a></li>';
+                  echo  '<li><a href="#">Manage Class Schedule</a></li>';
+                  // echo  '<li><a href="#">Manage Booking</a></li>';
+                echo '<li><a href="postmembershipcat.php">Manage membership</a></li>'; 
+                }
+                ?>
+                 <?php
+                if(isset($_SESSION['user_id'])){
+                  echo  '<li><a href="viewdojo.php">Dojo</a></li>';
+                  echo  '<li><a href="viewcompetition.php">Competition</a></li>';
+                  echo  '<li><a href="manage_booking.php">Your booking</a></li>';
+                }
+
+                ?>
                 </ul>
               </li>
              <!--  <li><a href="#">Dropdown 2</a></li>

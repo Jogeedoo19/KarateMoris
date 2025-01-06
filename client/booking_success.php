@@ -55,7 +55,7 @@ unset($_SESSION['booking_success']);
         <h1>Booking Successful!</h1>
         <p><?= htmlspecialchars($successMessage) ?></p>
         <a href="index.php" class="btn btn-primary mt-3">Go Back to Home</a>
-        <a href="my_bookings.php" class="btn btn-secondary mt-3">View My Bookings</a>
+        <a href="manage_booking.php" class="btn btn-secondary mt-3">View My Bookings</a>
     </div>
 </body>
 </html>

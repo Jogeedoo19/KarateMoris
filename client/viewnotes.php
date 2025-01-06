@@ -3,6 +3,7 @@ require_once "../db/pdo.php";
 require_once "../db/util.php";
 
 session_start();
+checkUserAuth();
 
 // Redirect to login if user is not logged in
 if (!isset($_SESSION['user_id'])) {

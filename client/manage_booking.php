@@ -126,10 +126,10 @@ $bookings = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         <td><?= htmlspecialchars($booking['dojo_name']) ?></td>
                         <td><?= htmlspecialchars($booking['membership_name']) ?></td>
                         <td>
-                            <a href="edit_booking.php?id=<?= $booking['id'] ?>" class="btn btn-warning btn-sm">
+                            <a href="manage_booking.php?id=<?= $booking['id'] ?>" class="btn btn-warning btn-sm">
                                 <i class="bi bi-pencil-square"></i> Edit
                             </a>
-                            <a href="delete_booking.php?id=<?= $booking['id'] ?>" class="btn btn-danger btn-sm" 
+                            <a href="manage_booking.php?id=<?= $booking['id'] ?>" class="btn btn-danger btn-sm" 
                                onclick="return confirm('Are you sure you want to delete this booking?');">
                                 <i class="bi bi-trash"></i> Delete
                             </a>
