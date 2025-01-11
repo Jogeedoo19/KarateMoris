@@ -3,7 +3,7 @@ require_once "../db/pdo.php";
 require_once "../db/util.php";
 
 session_start();
-checkUserAuth();
+
 
 // Redirect to login if user is not logged in
 if (!isset($_SESSION['user_id'])) {
@@ -19,12 +19,12 @@ $stmt = $pdo->prepare("
     SELECT 
         notes.*, 
         category.cat_name, 
-        user.first_name, 
-        user.last_name, 
-        user.image 
+        master.first_name, 
+        master.last_name, 
+        master.image 
     FROM notes 
     JOIN category ON notes.cat_id = category.cat_id 
-    JOIN user ON notes.master_id = user.user_id
+    JOIN master ON notes.master_id = master.master_id
 ");
 $stmt->execute();
 $notes = $stmt->fetchAll(PDO::FETCH_ASSOC);

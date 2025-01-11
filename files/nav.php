@@ -41,6 +41,7 @@ session_start();
         echo '<li><a href="postnotes.php">Manage Notes</a></li>';
         echo '<li><a href="postimages.php">Manage Gallery</a></li>';
         echo '<li><a href="postannouncement.php">Manage Announcemnt</a></li>';
+        echo '<li><a href="managechallenges.php">Manage Challenges</a></li>';
       }
       ?>
       <?php
@@ -58,7 +59,7 @@ session_start();
                 if(isset($_SESSION['master_id'])){
                   echo  '<li><a href="postcompetition.php">Manage Competition</a></li>';
                   echo  '<li><a href="dojo.php">Manage Dojo</a></li>';
-                  echo  '<li><a href="#">Manage Class Schedule</a></li>';
+                  //echo  '<li><a href="#">Manage Class Schedule</a></li>';
                   // echo  '<li><a href="#">Manage Booking</a></li>';
                 echo '<li><a href="postmembershipcat.php">Manage membership</a></li>'; 
                 }

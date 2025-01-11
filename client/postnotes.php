@@ -3,7 +3,7 @@ require_once "../db/pdo.php";
 require_once "../db/util.php";
 
 session_start();
-checkMasterAuth();
+
 
 // Redirect to login if user is not logged in
 if (!isset($_SESSION['master_id'])) {

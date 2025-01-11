@@ -165,28 +165,156 @@ $bookedDates = $bookingStmt->fetchAll(PDO::FETCH_COLUMN);
             </div>
         </div>
 
-        <!-- Calendar Section (Initially Hidden) -->
         <div id="calendarSection" style="display: none;">
-            <div class="membership-info alert alert-info">
-                <span id="selectedPlanInfo"></span>
-            </div>
-            
-            <form id="bookingForm" method="POST" action="process_booking.php">
-                <input type="hidden" name="membership_id" id="membershipId">
-                <input type="hidden" name="dojo_id" value="<?= htmlspecialchars($_GET['dojo_id'] ?? 1) ?>">
-                <input type="hidden" id="selectedDates" name="selected_dates">
-                
-                <div id="calendar"></div>
-                
-                <div class="mt-3 text-center">
-                    <button type="submit" class="btn btn-success btn-lg">Confirm Booking</button>
-                </div>
-            </form>
-        </div>
-    </main>
+        <h3>Select Training Dates</h3>
+        <div class="membership-info alert alert-info" id="selectedPlanInfo"></div>
+        <form id="bookingForm" method="POST" action="process_booking.php">
+            <input type="hidden" name="mem_id" id="membershipId">
+            <input type="hidden" name="dojo_id" value="<?= htmlspecialchars($_GET['dojo_id'] ?? 1) ?>">
+            <input type="hidden" name="selected_dates" id="selectedDates">
+            <input type="hidden" name="catmember_id" id="catmemberId"> <!-- Add this line -->
+            <div id="calendar"></div>
+            <button type="submit" class="btn btn-success mt-3" id="confirmBooking">
+                Confirm Booking
+            </button>
+        </form>
+    </div>
 
- 
-    <script src="../js/calendar-init.js" defer></script>
-    <?php include '../files/footer.php'; ?>
+    <script>
+        let calendar;
+        let selectedDates = [];
+        let maxSessions = null;
+        let currentMembershipName = '';
+
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeCalendar();
+            setupMembershipButtons();
+            setupBookingForm();
+        });
+
+        function initializeCalendar() {
+            const calendarEl = document.getElementById('calendar');
+            const bookedDates = <?= json_encode($bookedDates) ?>;
+
+            calendar = new FullCalendar.Calendar(calendarEl, {
+                initialView: 'dayGridMonth',
+                selectable: true,
+                selectConstraint: {
+                    start: new Date(),
+                },
+                select: function(info) {
+                    handleDateSelection(info);
+                },
+                events: bookedDates.map(date => ({
+                    title: 'Booked',
+                    start: date,
+                    color: 'red',
+                    display: 'background'
+                }))
+            });
+
+            calendar.render();
+        }
+
+        function handleDateSelection(info) {
+            const selectedDate = info.startStr;
+            const today = new Date();
+            const selectedDateTime = new Date(selectedDate);
+
+            // Prevent selecting past dates
+            if (selectedDateTime < today) {
+                alert('Cannot select past dates');
+                return;
+            }
+
+            // Check if date is already selected
+            if (selectedDates.includes(selectedDate)) {
+                selectedDates = selectedDates.filter(date => date !== selectedDate);
+                calendar.getEvents().forEach(event => {
+                    if (event.start.toISOString().split('T')[0] === selectedDate && event.title === 'Selected') {
+                        event.remove();
+                    }
+                });
+            } else {
+                // Check maximum sessions limit
+                if (maxSessions !== 'unlimited' && selectedDates.length >= maxSessions) {
+                    alert(`You can only select up to ${maxSessions} sessions with this plan`);
+                    return;
+                }
+
+                selectedDates.push(selectedDate);
+                calendar.addEvent({
+                    title: 'Selected',
+                    start: selectedDate,
+                    color: 'green',
+                    display: 'background'
+                });
+            }
+
+            updateSelectedDatesInput();
+        }
+
+        function setupMembershipButtons() {
+            document.querySelectorAll('.membership-btn').forEach(button => {
+                button.addEventListener('click', function() {
+                    // Reset previously selected dates
+                    selectedDates = [];
+                    calendar.getEvents().forEach(event => {
+                        if (event.title === 'Selected') {
+                            event.remove();
+                        }
+                    });
+
+                    // Update UI
+                    document.querySelectorAll('.pricing-item').forEach(item => {
+                        item.classList.remove('selected');
+                    });
+                    this.closest('.pricing-item').classList.add('selected');
+
+                    // Set membership details
+                    const membershipId = this.dataset.membershipId;
+                    currentMembershipName = this.dataset.membershipName;
+                    maxSessions = this.dataset.maxSessions === 'unlimited' ? 'unlimited' : parseInt(this.dataset.maxSessions);
+
+                    // Update form and show calendar
+                    document.getElementById('membershipId').value = membershipId;
+                    document.getElementById('catmemberId').value = membershipId; // Assigning membership ID dynamically
+                    document.getElementById('selectedPlanInfo').textContent = 
+                        `Selected Plan: ${currentMembershipName} (${maxSessions === 'unlimited' ? 'Unlimited' : maxSessions} sessions)`;
+                    document.getElementById('calendarSection').style.display = 'block';
+
+                    // Refresh calendar
+                    calendar.render();
+                });
+            });
+        }
+
+        function setupBookingForm() {
+            document.getElementById('bookingForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                if (selectedDates.length === 0) {
+                    alert('Please select at least one date');
+                    return;
+                }
+                // Prevent form submission if required fields are missing
+                if (!document.getElementById('membershipId').value ||
+                    !document.querySelector('input[name="dojo_id"]').value ||
+                    !document.getElementById('selectedDates').value ||
+                    !document.getElementById('catmemberId').value) {
+                    alert('Missing required fields');
+                    return false;
+                }
+
+                updateSelectedDatesInput();
+                this.submit();
+            });
+        }
+
+        function updateSelectedDatesInput() {
+            document.getElementById('selectedDates').value = JSON.stringify(selectedDates);
+            
+        }
+    </script>
 </body>
 </html>
