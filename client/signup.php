@@ -2,6 +2,7 @@
 require_once "../db/pdo.php";
 require_once "../db/util.php";
 
+
 session_start();
 
 // Function to sanitize input

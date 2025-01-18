@@ -190,7 +190,7 @@ if (isset($_POST['txtname'])) {
         </form>
         <br>
         <div class="row mt-3">
-            <table class="table table-dark table-hover table-striped w-100">
+            <table class="table table-dark table-hover table-striped w-100" id="ls">
                 <thead>
                     <tr>
                         <th>Name</th>

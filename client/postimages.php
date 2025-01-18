@@ -134,7 +134,7 @@ flashMessages();
         </form>
         <br>
         <div class="row mt-3">
-            <table class="table table-dark table-hover table-striped w-75">
+            <table class="table table-dark table-hover table-striped w-75" id="ls">
                 <thead>
                     <th>Image</th>
                     <th>Action</th>

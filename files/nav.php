@@ -15,7 +15,27 @@ session_start();
         <ul>
           <li><a href="index.php" class="active">Home</a></li>
           <li><a href="about.php">About</a></li>
-          <li><a href="index.html#features">Challenges</a></li>
+          <li class="dropdown"><a href="#"><span>Activity</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+          <ul>
+          <?php
+      if(isset($_SESSION['master_id'])){
+        echo '<li><a href="challengeexercise.php">Manage Challenge Exercises</a></li>';
+        echo '<li><a href="viewuserprogress.php">User Progress</a></li>';
+        echo  '<li><a href="postperformance.php">Manage User Performance</a></li>';
+        
+        
+        
+      }
+      ?>
+       <?php
+      if(isset($_SESSION['user_id'])){
+        echo  '<li><a href="challenge.php">Challenge</a></li>';
+        echo '<li><a href="userviewperformance.php">Your Performance</a></li>';
+        
+      }
+      ?>
+          </ul>
+          </li>         
           <li><a href="index.html#services">Services</a></li>
           <li><a href="index.html#pricing">Pricing</a></li>
           <li class="dropdown"><a href="#"><span>Community</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
@@ -41,7 +61,9 @@ session_start();
         echo '<li><a href="postnotes.php">Manage Notes</a></li>';
         echo '<li><a href="postimages.php">Manage Gallery</a></li>';
         echo '<li><a href="postannouncement.php">Manage Announcemnt</a></li>';
-        echo '<li><a href="managechallenges.php">Manage Challenges</a></li>';
+       
+        
+       
       }
       ?>
       <?php

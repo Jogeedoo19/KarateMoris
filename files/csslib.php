@@ -17,7 +17,8 @@
   <!-- Main CSS File -->
   
   <link href="../assets/css/main.css" rel="stylesheet">
-  
+  <link rel="stylesheet"
+  href="https://cdn.datatables.net/2.2.1/css/dataTables.dataTables.min.css" />
  
   <link rel="stylesheet" href="../static/css/main.css">
  <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstraptheme.min.css" integrity="sha384-
