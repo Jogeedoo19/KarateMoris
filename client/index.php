@@ -138,41 +138,47 @@ try{
     </section><!-- /About Section -->
 
     <!-- Clients Section -->
+
     <section id="clients" class="clients section">
-
-      <div class="container" data-aos="fade-up">
-
+    <div class="container" data-aos="fade-up">
         <div class="row gy-4">
+            <?php 
+            // Fetch approved and non-expired advertisements
+            $stmt = $pdo->prepare("
+                SELECT * FROM advertisement 
+                WHERE status = 1 
+                AND expire_date >= CURRENT_DATE
+                ORDER BY date_confirm DESC
+            ");
+            $stmt->execute();
+            $advertisements = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-          <div class="col-xl-2 col-md-3 col-6 client-logo">
-            <img src="../assets/img/clients/client-1.png" class="img-fluid" alt="">
-          </div><!-- End Client Item -->
+            foreach ($advertisements as $ad): 
+                $logoPath = "../upload/" . htmlentities($ad['logopath']);
+            ?>
+                <div class="col-xl-2 col-md-3 col-6 client-logo">
+                    <a href="<?= htmlentities($ad['websiteurl']) ?>" 
+                       target="_blank" 
+                       title="<?= htmlentities($ad['company_name']) ?>">
+                        <img src="<?= $logoPath ?>" 
+                             class="img-fluid" 
+                             alt="<?= htmlentities($ad['alternatetext']) ?>">
+                    </a>
+                </div>
+            <?php endforeach; 
 
-          <div class="col-xl-2 col-md-3 col-6 client-logo">
-            <img src="../assets/img/clients/client-2.png" class="img-fluid" alt="">
-          </div><!-- End Client Item -->
-
-          <div class="col-xl-2 col-md-3 col-6 client-logo">
-            <img src="../assets/img/clients/client-3.png" class="img-fluid" alt="">
-          </div><!-- End Client Item -->
-
-          <div class="col-xl-2 col-md-3 col-6 client-logo">
-            <img src="../assets/img/clients/client-4.png" class="img-fluid" alt="">
-          </div><!-- End Client Item -->
-
-          <div class="col-xl-2 col-md-3 col-6 client-logo">
-            <img src="../assets/img/clients/client-5.png" class="img-fluid" alt="">
-          </div><!-- End Client Item -->
-
-          <div class="col-xl-2 col-md-3 col-6 client-logo">
-            <img src="../assets/img/clients/client-6.png" class="img-fluid" alt="">
-          </div><!-- End Client Item -->
-
+            // Fill remaining slots with default logos if needed
+            $remainingSlots = 6 - count($advertisements);
+            for ($i = 0; $i < $remainingSlots; $i++): ?>
+                <div class="col-xl-2 col-md-3 col-6 client-logo">
+                    <img src="../upload-<?= ($i + 1) ?>.png" 
+                         class="img-fluid" 
+                         alt="Partner Logo">
+                </div>
+            <?php endfor; ?>
         </div>
-
-      </div>
-
-    </section><!-- /Clients Section -->
+    </div>
+</section> 
 
     <!-- Features Section -->
     <section id="features" class="features section">

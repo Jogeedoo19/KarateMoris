@@ -15,9 +15,9 @@ session_start();
             </div>
             <ul class="sidebar-nav">
                 <li class="sidebar-item">
-                    <a href="postcompetition.php" class="sidebar-link">
+                    <a href="manage_adverts.php" class="sidebar-link">
                         <i class="lni lni-user"></i>
-                        <span>Post Competition</span>
+                        <span>Manage Advertisement</span>
                     </a>
                 </li>
                 <li class="sidebar-item">

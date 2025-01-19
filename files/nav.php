@@ -36,7 +36,7 @@ session_start();
       ?>
           </ul>
           </li>         
-          <li><a href="index.html#services">Services</a></li>
+          <li><a href="master_review.php">Review</a></li>
           <li><a href="index.html#pricing">Pricing</a></li>
           <li class="dropdown"><a href="#"><span>Community</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
             <ul>
@@ -80,6 +80,7 @@ session_start();
                 <?php
                 if(isset($_SESSION['master_id'])){
                   echo  '<li><a href="postcompetition.php">Manage Competition</a></li>';
+                  echo '<li><a href="manage_signups.php">Manage Competition Signups</a></li>';
                   echo  '<li><a href="dojo.php">Manage Dojo</a></li>';
                   //echo  '<li><a href="#">Manage Class Schedule</a></li>';
                   // echo  '<li><a href="#">Manage Booking</a></li>';

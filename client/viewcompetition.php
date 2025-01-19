@@ -78,7 +78,24 @@ $competitions = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 <h5 class="card-title"><?= htmlentities($competition['com_name']) ?></h5>
                 <p class="card-text"> <?= htmlentities($competition['com_description']) ?></p>
               
-                <button type="button" class="btn btn-sm btn-outline-primary"><a href="">Sign Up</a></button>
+                <?php
+
+
+// Check if user has already signed up
+$checkStmt = $pdo->prepare("SELECT status FROM signup WHERE user_id = ? AND com_id = ?");
+$checkStmt->execute([$userId, $competition['com_id']]);
+$existingSignup = $checkStmt->fetch(PDO::FETCH_ASSOC);
+
+if (!$existingSignup): ?>
+    <form method="post" action="signupcom.php" style="display: inline;">
+        <input type="hidden" name="competition_id" value="<?= $competition['com_id'] ?>">
+        <button type="submit" class="btn btn-sm btn-outline-primary">Sign Up</button>
+    </form>
+<?php else: ?>
+    <button type="button" class="btn btn-sm btn-outline-secondary" disabled>
+        Status: <?= htmlentities(ucfirst($existingSignup['status'])) ?>
+    </button>
+<?php endif; ?>
             </div>
 
             <!-- Footer -->
