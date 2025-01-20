@@ -169,7 +169,7 @@ $bookedDates = $bookingStmt->fetchAll(PDO::FETCH_COLUMN);
         <h3>Select Training Dates</h3>
         <div class="membership-info alert alert-info" id="selectedPlanInfo"></div>
         <form id="bookingForm" method="POST" action="process_booking.php">
-            <input type="hidden" name="mem_id" id="membershipId">
+            <input type="hidden" name="membership_id" id="membershipId">
             <input type="hidden" name="dojo_id" value="<?= htmlspecialchars($_GET['dojo_id'] ?? 1) ?>">
             <input type="hidden" name="selected_dates" id="selectedDates">
             <input type="hidden" name="catmember_id" id="catmemberId"> <!-- Add this line -->
