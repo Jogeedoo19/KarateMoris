@@ -134,5 +134,17 @@ function getYoutubeEmbedUrl($url) {
 // Then use it like this:
 //$final = getYoutubeEmbedUrl($video['videourl']);
     
+function validateOldPass()
+            {
+            if (strlen($_POST['txtoldpass']) < 1) {
+            return 'Old Password is required';
+            }
+            }
+            function validateCPass()
+            {
+            if ($_POST['txtnewpass'] != $_POST['txtcpass']) {
+            return 'Password does not match';
+            }
+            }
 
 ?>

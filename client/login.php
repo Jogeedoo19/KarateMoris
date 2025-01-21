@@ -95,7 +95,7 @@ if(isset($_POST['btnlogin'])){
 
                 <div class="container" style="background-color:#f1f1f1">
                     <a href="index.php" class="btncancel">Cancel</a>
-                    <span class="psw">Forgot <a href="forgot_password.php">password?</a></span>
+                    <span class="psw">Change <a href="changepass.php">password?</a></span>
                     <div class="mt-3">
                         Don't have an account? <a href="signup.php">Sign up here</a>
                     </div>

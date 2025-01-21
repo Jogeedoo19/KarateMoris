@@ -35,9 +35,15 @@ session_start();
       }
       ?>
           </ul>
-          </li>         
-          <li><a href="master_review.php">Review</a></li>
-          <li><a href="index.html#pricing">Pricing</a></li>
+          </li> 
+          <?php
+                if(isset($_SESSION['user_id'])){  
+          echo '<li><a href="master_review.php">Review</a></li>';
+
+                }
+                ?>
+
+          <!-- <li><a href="index.html#pricing">Pricing</a></li> -->
           <li class="dropdown"><a href="#"><span>Community</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
             <ul>
             <?php

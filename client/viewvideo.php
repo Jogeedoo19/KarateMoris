@@ -40,21 +40,52 @@ $videos = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <title>Videos</title>
     <link href="../css/stylecss.css" rel="stylesheet">
     <?php include '../files/csslib.php' ?> <!-- Include Bootstrap and other libraries -->
+    <style>
+.video-card {
+    transition: all 0.3s ease;
+}
+.form-select:focus, .form-control:focus {
+    border-color: #80bdff;
+    box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25);
+}
+</style>
 </head>
 <body>
 
 <!-- Include navigation -->
 <?php include '../files/nav.php' ?>
-
+<br><br><br><br>
 <main class="main container mt-5">
     <h2 class="text-center mb-4">Available Videos</h2>
 
+    <div class="row mb-4">
+    <div class="col-md-6 mx-auto">
+        <div class="input-group">
+            <input 
+                type="text" 
+                id="categorySearch" 
+                class="form-control" 
+                placeholder="Search by category..."
+                aria-label="Search by category">
+            <select id="categoryFilter" class="form-select" style="max-width: 200px;">
+                <option value="">All Categories</option>
+                <?php
+                $stmt = $pdo->query("SELECT DISTINCT cat_name FROM category ORDER BY cat_name");
+                while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                    echo "<option value='" . htmlentities($row['cat_name']) . "'>" . 
+                         htmlentities($row['cat_name']) . "</option>";
+                }
+                ?>
+            </select>
+        </div>
+    </div>
+</div>
     <!-- Display Videos in Cards -->
-    <div class="row">
+    <div class="row" id="videoContainer">
     <?php foreach ($videos as $video): 
                 $embed_url = getYoutubeEmbedUrl($video['videourl'] ?? '');
                 ?>
-            <div class="col-md-4">
+            <div class="col-md-4 video-card" data-category="<?= htmlentities($video['cat_name']) ?>">
                 <div class="card mb-4 shadow-sm">
                     <!-- Video -->
                     <div class="card-body p-0">
@@ -106,6 +137,46 @@ $videos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 <!-- Add any JavaScript needed -->
 <script>
 document.addEventListener('DOMContentLoaded', function() {
+    const categorySearch = document.getElementById('categorySearch');
+    const categoryFilter = document.getElementById('categoryFilter');
+    const videoCards = document.querySelectorAll('.video-card');
+
+    function filterVideos() {
+        const searchTerm = categorySearch.value.toLowerCase();
+        const selectedCategory = categoryFilter.value.toLowerCase();
+
+        videoCards.forEach(card => {
+            const category = card.dataset.category.toLowerCase();
+            const matchesSearch = category.includes(searchTerm);
+            const matchesFilter = !selectedCategory || category === selectedCategory;
+            
+            if (matchesSearch && matchesFilter) {
+                card.style.display = '';
+            } else {
+                card.style.display = 'none';
+            }
+        });
+
+        // Show "no results" message if all cards are hidden
+        const visibleCards = document.querySelectorAll('.video-card[style=""]').length;
+        let noResultsMsg = document.getElementById('noResultsMessage');
+        
+        if (visibleCards === 0) {
+            if (!noResultsMsg) {
+                noResultsMsg = document.createElement('div');
+                noResultsMsg.id = 'noResultsMessage';
+                noResultsMsg.className = 'col-12 text-center my-5';
+                noResultsMsg.innerHTML = '<p class="text-muted">No videos found matching your search.</p>';
+                document.getElementById('videoContainer').appendChild(noResultsMsg);
+            }
+        } else if (noResultsMsg) {
+            noResultsMsg.remove();
+        }
+    }
+
+    // Event listeners for both search input and dropdown
+    categorySearch.addEventListener('input', filterVideos);
+    categoryFilter.addEventListener('change', filterVideos);
     // Handle iframe loading errors
     document.querySelectorAll('iframe').forEach(iframe => {
         iframe.onerror = function() {

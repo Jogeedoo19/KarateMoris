@@ -507,134 +507,104 @@ Osu!
     </section> -->
     <!-- /Faq Section -->
 
-    <!-- Testimonials Section -->
-    <section id="testimonials" class="testimonials section light-background">
+   <!-- Testimonials Section -->
+<section id="testimonials" class="testimonials section light-background" style="padding: 60px 0; background: #f8f9fa;">
+  <!-- Section Title -->
+  <div class="container" style="text-align: center; margin-bottom: 40px;">
+    <h2>Testimonials</h2>
+    <p>Tell your story.</p>
+  </div>
 
-      <!-- Section Title -->
-      <div class="container section-title" data-aos="fade-up">
-        <h2>Testimonials</h2>
-        <p>Tell your story.</p>
-      </div><!-- End Section Title -->
-
-      <div class="container" data-aos="fade-up" data-aos-delay="100">
-
-        <div class="swiper init-swiper">
-          <script type="application/json" class="swiper-config">
-            {
-              "loop": true,
-              "speed": 600,
-              "autoplay": {
-                "delay": 5000
-              },
-              "slidesPerView": "auto",
-              "pagination": {
-                "el": ".swiper-pagination",
-                "type": "bullets",
-                "clickable": true
-              },
-              "breakpoints": {
-                "320": {
-                  "slidesPerView": 1,
-                  "spaceBetween": 40
-                },
-                "1200": {
-                  "slidesPerView": 3,
-                  "spaceBetween": 1
-                }
-              }
-            }
-          </script>
-          <div class="swiper-wrapper">
-          <?php foreach ($testimonials as $testimonial): ?>
-            <div class="swiper-slide">
-              <div class="testimonial-item">
-                <div class="stars">
-                  <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
-                </div>
-                <p>
-                <p><?= htmlspecialchars($testimonial['message']) ?></p>
-                </p>
-                <div class="profile mt-auto">
-                <img src="../client/uploads/<?php echo $testimonial['image'] ?>" class="testimonial-img" alt="Profile of <?= htmlspecialchars($testimonial['first_name']) ?>">
-                <h3><?= htmlspecialchars($testimonial['first_name'] . ' ' . $testimonial['last_name']) ?></h3>
-                </div>
+  <div class="container">
+    <div class="row testimonial-container" style="position: relative;">
+      <div class="col-12">
+        <div class="testimonial-wrapper" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 250px)); gap: 20px;  justify-content: center; max-width: 800px; margin: 0 auto;">
+          <?php foreach ($testimonials as $index => $testimonial): ?>
+            <div class="testimonial-card" data-page="<?= floor($index / 3) + 1 ?>" 
+                 style="background: white; border-radius: 8px; padding: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); display: block;">
+              <!-- Stars -->
+              <div style="color: #ffc107; margin-bottom: 15px;">
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
               </div>
-            </div><!-- End testimonial item -->
-            <?php endforeach; ?>
-          <!--   <div class="swiper-slide">
-              <div class="testimonial-item">
-                <div class="stars">
-                  <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
-                </div>
-                <p>
-                  Export tempor illum tamen malis malis eram quae irure esse labore quem cillum quid cillum eram malis quorum velit fore eram velit sunt aliqua noster fugiat irure amet legam anim culpa.
-                </p>
-                <div class="profile mt-auto">
-                  <img src="../assets/img/testimonials/testimonials-2.jpg" class="testimonial-img" alt="">
-                  <h3>Sara Wilsson</h3>
-                  <h4>Designer</h4>
-                </div>
+              
+              <!-- Testimonial Content -->
+              <div style="min-height: 120px; margin-bottom: 20px;">
+                <p style="font-size: 14px; line-height: 1.6; color: #444;"><?= htmlspecialchars($testimonial['message']) ?></p>
+              </div>
+              
+              <!-- Profile -->
+              <div style="text-align: center;">
+                <img 
+                  src="../client/uploads/<?= htmlspecialchars($testimonial['image']) ?>" 
+                  alt="Profile of <?= htmlspecialchars($testimonial['first_name']) ?>"
+                  style="width: 80px; height: 80px; border-radius: 50%; object-fit: cover; margin: 0 auto 10px;"
+                >
+                <h3 style="font-size: 16px; font-weight: 600; color: #333; margin: 0;">
+                  <?= htmlspecialchars($testimonial['first_name'] . ' ' . $testimonial['last_name']) ?>
+                </h3>
               </div>
             </div>
-
-            <div class="swiper-slide">
-              <div class="testimonial-item">
-                <div class="stars">
-                  <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
-                </div>
-                <p>
-                  Enim nisi quem export duis labore cillum quae magna enim sint quorum nulla quem veniam duis minim tempor labore quem eram duis noster aute amet eram fore quis sint minim.
-                </p>
-                <div class="profile mt-auto">
-                  <img src="../assets/img/testimonials/testimonials-3.jpg" class="testimonial-img" alt="">
-                  <h3>Jena Karlis</h3>
-                  <h4>Store Owner</h4>
-                </div>
-              </div>
-            </div>
-
-            <div class="swiper-slide">
-              <div class="testimonial-item">
-                <div class="stars">
-                  <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
-                </div>
-                <p>
-                  Fugiat enim eram quae cillum dolore dolor amet nulla culpa multos export minim fugiat minim velit minim dolor enim duis veniam ipsum anim magna sunt elit fore quem dolore labore illum veniam.
-                </p>
-                <div class="profile mt-auto">
-                  <img src="../assets/img/testimonials/testimonials-4.jpg" class="testimonial-img" alt="">
-                  <h3>Matt Brandon</h3>
-                  <h4>Freelancer</h4>
-                </div>
-              </div>
-            </div>
-
-            <div class="swiper-slide">
-              <div class="testimonial-item">
-                <div class="stars">
-                  <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
-                </div>
-                <p>
-                  Quis quorum aliqua sint quem legam fore sunt eram irure aliqua veniam tempor noster veniam enim culpa labore duis sunt culpa nulla illum cillum fugiat legam esse veniam culpa fore nisi cillum quid.
-                </p>
-                <div class="profile mt-auto">
-                  <img src="../assets/img/testimonials/testimonials-5.jpg" class="testimonial-img" alt="">
-                  <h3>John Larson</h3>
-                  <h4>Entrepreneur</h4>
-                </div>
-              </div>
-            </div> -->
-
-          </div>
-          <div class="swiper-pagination"></div>
+          <?php endforeach; ?>
         </div>
 
+        <!-- Pagination -->
+        <?php 
+        $items_per_page = 3;
+        $total_items = count($testimonials);
+        $total_pages = ceil($total_items / $items_per_page);
+        
+        if ($total_pages > 1): 
+        ?>
+        <div class="pagination-wrapper" style="display: flex; justify-content: center; margin-top: 30px; gap: 10px;">
+          <?php for ($i = 1; $i <= $total_pages; $i++): ?>
+            <button onclick="changePage(<?= $i ?>)" class="page-btn" data-page="<?= $i ?>"
+                    style="width: 40px; height: 40px; border-radius: 50%; border: none; 
+                           background: <?= $i === 1 ? '#007bff' : '#e9ecef' ?>; 
+                           color: <?= $i === 1 ? 'white' : '#333' ?>; 
+                           cursor: pointer;">
+              <?= $i ?>
+            </button>
+          <?php endfor; ?>
+        </div>
+        <?php endif; ?>
       </div>
+    </div>
+  </div>
+</section>
 
-    </section><!-- /Testimonials Section -->
+<script>
+// Execute this when the page loads to show only the first page initially
+document.addEventListener('DOMContentLoaded', function() {
+    changePage(1);
+});
 
-  
-
+function changePage(pageNum) {
+    // Hide all testimonials first
+    document.querySelectorAll('.testimonial-card').forEach(card => {
+        card.style.display = 'none';
+    });
+    
+    // Show testimonials for selected page with a smooth fade
+    document.querySelectorAll(`.testimonial-card[data-page="${pageNum}"]`).forEach(card => {
+        card.style.display = 'block';
+    });
+    
+    // Update pagination buttons
+    document.querySelectorAll('.page-btn').forEach(btn => {
+        if (parseInt(btn.dataset.page) === pageNum) {
+            btn.style.background = '#007bff';
+            btn.style.color = 'white';
+        } else {
+            btn.style.background = '#e9ecef';
+            btn.style.color = '#333';
+        }
+    });
+}
+</script>
   </main>
 
 

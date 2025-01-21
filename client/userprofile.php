@@ -85,6 +85,7 @@ if (!$user) {
                 <div class="detail-item">
                     <span>Address:</span> <?php echo htmlentities($user['address']); ?>
                 </div>
+                <a href="changepass.php" class="btn btn-primary">Change Your Password</a>
                 <div class="detail-item text-center mt-4">
                     <a href="edituserprofile.php" class="btn btn-primary">Edit Profile</a>
                
