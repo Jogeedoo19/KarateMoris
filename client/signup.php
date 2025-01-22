@@ -99,6 +99,7 @@ if (isset($_POST['signup'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign Up</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <?php include '../files/csslib.php'; ?> <!-- Including libraries -->
     <style>
         .form-container {
             max-width: 600px;
@@ -115,6 +116,9 @@ if (isset($_POST['signup'])) {
     </style>
 </head>
 <body>
+    <!-- Include header and navigation -->
+    <?php include_once '../files/nav.php'; ?>
+    <br><br> <br><br>
     <div class="container">
         <div class="form-container">
             <h2 class="text-center mb-4">Sign Up</h2>
@@ -177,5 +181,6 @@ if (isset($_POST['signup'])) {
             }
         }
     </script>
+    <?php include '../files/footer.php'; ?>
 </body>
 </html>

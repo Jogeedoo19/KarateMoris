@@ -125,7 +125,7 @@ if (!$master) {
 </head>
 <body>
 <?php include_once '../files/nav.php' ?>
-<br><br>
+<br><br> <br><br> 
 <main>
     <div class="container">
         <div class="profile-container">
@@ -182,8 +182,8 @@ if (!$master) {
                             <?php endfor; ?>
                         </div>
                     </div>
-                </div>
-
+                </div><br>
+                <a href="changepassmaster.php" class="btn btn-primary">Change Your Password</a>
                 <div class="detail-item text-center mt-4">
                     <a href="editmasterprofile.php" class="btn btn-primary">Edit Profile</a>
                 </div>

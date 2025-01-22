@@ -42,7 +42,7 @@ $competitions = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 <!-- Include navigation -->
 <?php include '../files/nav.php'; ?>
-
+<br><br> <br><br>
 <main class="main container mt-5">
     <h2 class="text-center mb-4">competition</h2>
 

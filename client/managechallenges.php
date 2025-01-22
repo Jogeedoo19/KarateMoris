@@ -188,7 +188,7 @@ function handleImageUpload($fieldName, $uploadDir) {
 </head>
 <body>
 <?php include_once '../files/nav.php'; ?>
-
+<br><br> <br><br>
 <div class="container mt-5">
     <h3><?php flashMessages(); ?></h3>
     

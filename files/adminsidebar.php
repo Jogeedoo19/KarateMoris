@@ -16,7 +16,7 @@ session_start();
             <ul class="sidebar-nav">
                 <li class="sidebar-item">
                     <a href="manage_adverts.php" class="sidebar-link">
-                        <i class="lni lni-user"></i>
+                        <i class="lni lni-layout"></i>
                         <span>Manage Advertisement</span>
                     </a>
                 </li>
@@ -41,7 +41,7 @@ session_start();
                         </li>
                     </ul>
                 </li>
-                <li class="sidebar-item">
+             <!--    <li class="sidebar-item">
                     <a href="#" class="sidebar-link collapsed has-dropdown" data-bs-toggle="collapse"
                         data-bs-target="#multi" aria-expanded="false" aria-controls="multi">
                         <i class="lni lni-layout"></i>
@@ -88,7 +88,7 @@ session_start();
                     <i class="lni lni-exit"></i>
                     <span>Logout</span>
                 </a>
-            </div>
+            </div> -->
         </aside>
         
 

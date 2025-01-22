@@ -4,58 +4,61 @@ require_once "../db/util.php";
 
 session_start();
 
-// Check if the user is logged in
-if (!isset($_SESSION['user_id'])) {
-    $_SESSION['error'] = "You must log in first.";
-    header("Location: login.php");
-    return;
+if (!isset($_SESSION['success'])) {
+    header("Location: book_training.php");
+    exit();
 }
 
-// Check for booking success data
-if (!isset($_SESSION['booking_success'])) {
-    $_SESSION['error'] = "No booking data found.";
-    header("Location: index.php");
-    return;
-}
-
-// Fetch the success message and clear it from the session
-$successMessage = $_SESSION['booking_success'];
-unset($_SESSION['booking_success']);
+$success_message = $_SESSION['success'];
+unset($_SESSION['success']); // Clear the success message
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Booking Success</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Booking Successful</title>
+    <?php include '../files/csslib.php'; ?>
     <style>
-        body {
-            background-color: #f5f5f5;
-        }
         .success-container {
-            margin-top: 100px;
+            max-width: 600px;
+            margin: 50px auto;
             text-align: center;
+            padding: 30px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
         }
-        .success-container h1 {
-            font-size: 2.5rem;
+        .checkmark {
             color: #28a745;
+            font-size: 80px;
+            margin-bottom: 20px;
         }
-        .success-container p {
-            font-size: 1.2rem;
-            color: #6c757d;
+        .action-buttons {
+            margin-top: 30px;
         }
-        .success-container a {
-            margin-top: 20px;
+        .action-buttons .btn {
+            margin: 0 10px;
         }
     </style>
 </head>
 <body>
-    <div class="container success-container">
-        <h1>Booking Successful!</h1>
-        <p><?= htmlspecialchars($successMessage) ?></p>
-        <a href="index.php" class="btn btn-primary mt-3">Go Back to Home</a>
-        <a href="manage_booking.php" class="btn btn-secondary mt-3">View My Bookings</a>
-    </div>
+    <?php include '../files/nav.php'; ?>
+<br><br><br><br>
+    <main class="container">
+        <div class="success-container">
+            <i class="bi bi-check-circle-fill checkmark"></i>
+            <h2 class="mb-4">Booking Successful!</h2>
+            <p class="lead mb-4"><?= htmlentities($success_message) ?></p>
+            
+            <div class="action-buttons">
+                <a href="book_training.php" class="btn btn-outline-primary">Make Another Booking</a>
+                <a href="manage_booking.php" class="btn btn-primary">View My Bookings</a>
+            </div>
+        </div>
+    </main>
+
+    <?php include '../files/footer.php'; ?>
 </body>
 </html>

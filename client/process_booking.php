@@ -83,6 +83,10 @@ try {
     // Commit the transaction
     $pdo->commit();
     $_SESSION['success'] = "Booking confirmed successfully!";
+    // Redirect back to the booking page
+header("Location: booking_success.php");
+exit();
+
 } catch (PDOException $e) {
     // Rollback the transaction on error
     $pdo->rollBack();

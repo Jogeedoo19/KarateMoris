@@ -135,7 +135,7 @@ foreach ($results as $row) {
 </head>
 <body>
 <?php include_once '../files/nav.php'; ?>
-
+<br><br> <br><br>
 <div class="container mt-5">
     <h2>Student Progress Tracking</h2>
     

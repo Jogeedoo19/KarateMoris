@@ -68,7 +68,7 @@ if (!$user) {
 </head>
 <body>
 <?php include_once '../files/nav.php' ?>
-<br><br>
+<br><br><br><br>
 <main>
     <div class="container">
         <div class="profile-container">

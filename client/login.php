@@ -68,7 +68,7 @@ if(isset($_POST['btnlogin'])){
 <body>
     <!-- Include header and navigation -->
     <?php include_once '../files/nav.php'; ?>
-    <br><br>
+    <br><br> <br><br>
 
     <main class="main">
         <div class="container col-xl-4 col-lg-6">

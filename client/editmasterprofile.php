@@ -96,7 +96,7 @@ if (isset($_POST['update_profile'])) {
 <body>
     <!-- Include navigation -->
     <?php include '../files/nav.php'; ?>
-
+    <br><br> 
     <div class="container mt-5">
         <h2 class="text-center">Edit Profile</h2>
         <?php if (isset($_SESSION['error'])): ?>

@@ -128,6 +128,7 @@ $videos = $stmt->fetchAll(PDO::FETCH_ASSOC);
             </div>
         <?php endforeach; ?>
     </div>
+    
 </main>
 
 

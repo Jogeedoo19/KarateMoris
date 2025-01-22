@@ -4,7 +4,7 @@ require_once "../db/pdo.php";
 require_once "../db/util.php";
 
 // Deny access if session does not exist
-if (!isset($_SESSION["user_id"])) {
+if (!isset($_SESSION["master_id"])) {
     header("Location: index.php");
     exit();
 }
@@ -20,20 +20,20 @@ if (isset($_POST['btnupdate'])) {
 
     if (is_string($msg) || is_string($msg2)) {
         $_SESSION['error'] = "$msg <br/> $msg2";
-        header("Location: changepass.php");
+        header("Location: changepassmaster.php");
         exit();
     }
 
     // Fetch the user's current password hash from the database
-    $stmt = $pdo->prepare("SELECT user_id, password FROM user WHERE user_id = :user_id");
+    $stmt = $pdo->prepare("SELECT master_id, password FROM master WHERE master_id = :master_id");
     $stmt->execute([
-        ':user_id' => $_SESSION['user_id']
+        ':master_id' => $_SESSION['master_id']
     ]);
     $srow = $stmt->fetch(PDO::FETCH_ASSOC);
 
     if ($srow === false) {
-        $_SESSION['error'] = "User not found.";
-        header("Location: changepass.php");
+        $_SESSION['error'] = "Master not found.";
+        header("Location: changepassmaster.php");
         exit();
     }
 
@@ -43,19 +43,19 @@ if (isset($_POST['btnupdate'])) {
         $newpass = password_hash($_POST['txtnewpass'], PASSWORD_DEFAULT);
 
         // Update the password in the database
-        $sql = "UPDATE user SET password = :pass WHERE user_id = :user_id";
+        $sql = "UPDATE master SET password = :pass WHERE master_id = :master_id";
         $stmt2 = $pdo->prepare($sql);
         $stmt2->execute([
-            ':user_id' => $_SESSION['user_id'],
+            ':master_id' => $_SESSION['master_id'],
             ':pass' => $newpass
         ]);
 
         $_SESSION['successmsg'] = "Your password has been changed.";
-        header("Location: changepass.php");
+        header("Location: changepassmaster.php");
         exit();
     } else {
         $_SESSION['error'] = "Old password does not match!";
-        header("Location: changepass.php");
+        header("Location: changepassmaster.php");
         exit();
     }
 }

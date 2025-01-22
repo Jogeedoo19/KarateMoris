@@ -1,3 +1,10 @@
+<?php
+require_once "../db/pdo.php";
+
+$userCount = $pdo->query("SELECT COUNT(*) FROM user")->fetchColumn();
+$masterCount = $pdo->query("SELECT COUNT(*) FROM master")->fetchColumn();
+$advertCount = $pdo->query("SELECT COUNT(*) FROM advertisement")->fetchColumn();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -40,7 +47,7 @@
 <div class="card bg-primary text-white h-100">
   <div class="card-body py-5">Number Of User</div>
   <div class="card-footer d-flex">
-    View Details
+  <?= number_format($userCount) ?>
     <span class="ms-auto">
       <i class="bi bi-chevron-right"></i> 
     </span>
@@ -51,7 +58,7 @@
 <div class="card bg-warning text-dark h-100">
   <div class="card-body py-5">Number Of Master</div>
   <div class="card-footer d-flex">
-    View Details
+  <?= number_format($masterCount) ?>
     <span class="ms-auto">
       <i class="bi bi-chevron-right"></i> 
     </span>
@@ -62,7 +69,7 @@
 <div class="card bg-success text-white h-100">
   <div class="card-body py-5">Number Of Advert</div>
   <div class="card-footer d-flex">
-    View Details
+  <?= number_format($advertCount) ?>
     <span class="ms-auto">
       <i class="bi bi-chevron-right"></i> 
     </span>

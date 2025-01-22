@@ -83,7 +83,7 @@ $bookings = $stmt->fetchAll(PDO::FETCH_ASSOC);
 </head>
 <body>
     <?php include '../files/nav.php'; ?>
-
+    <br><br> <br><br>
     <main class="container mt-5">
         <h2 class="text-center mb-4">Manage Your Bookings</h2>
         
@@ -115,7 +115,7 @@ $bookings = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         <th>Booking Date</th>
                         <th>Dojo Name</th>
                         <th>Membership Plan</th>
-                        <th>Actions</th>
+                        <!-- <th>Actions</th>  -->
                     </tr>
                 </thead>
                 <tbody>
@@ -125,15 +125,15 @@ $bookings = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         <td><?= htmlspecialchars($booking['booking_date']) ?></td>
                         <td><?= htmlspecialchars($booking['dojo_name']) ?></td>
                         <td><?= htmlspecialchars($booking['membership_name']) ?></td>
-                        <td>
-                            <a href="manage_booking.php?id=<?= $booking['id'] ?>" class="btn btn-warning btn-sm">
+                        <!-- <td>
+                            <a href="manage_booking.php?id=#" class="btn btn-warning btn-sm">
                                 <i class="bi bi-pencil-square"></i> Edit
                             </a>
-                            <a href="manage_booking.php?id=<?= $booking['id'] ?>" class="btn btn-danger btn-sm" 
+                            <a href="manage_booking.php?id=#" class="btn btn-danger btn-sm" 
                                onclick="return confirm('Are you sure you want to delete this booking?');">
                                 <i class="bi bi-trash"></i> Delete
                             </a>
-                        </td>
+                        </td> -->
                     </tr>
                     <?php endforeach; ?>
                 </tbody>

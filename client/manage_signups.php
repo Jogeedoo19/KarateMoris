@@ -7,7 +7,7 @@ session_start();
 // Verify the user is a master
 if (!isset($_SESSION['master_id'])) {
     $_SESSION['error'] = "Access denied";
-    header("Location: login.php");
+    header("Location: masterlogin.php");
     return;
 }
 
@@ -40,7 +40,7 @@ $signups = $stmt->fetchAll(PDO::FETCH_ASSOC);
 </head>
 <body>
     <?php include '../files/nav.php'; ?>
-    
+    <br><br> <br><br>
     <main class="container mt-5">
         <h2>Manage Competition Signups</h2>
         

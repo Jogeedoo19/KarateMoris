@@ -19,7 +19,7 @@ session_start();
           <ul>
           <?php
       if(isset($_SESSION['master_id'])){
-        echo '<li><a href="challengeexercise.php">Manage Challenge Exercises</a></li>';
+        echo '<li><a href="managechallenges.php">Manage Challenge Exercises</a></li>';
         echo '<li><a href="viewuserprogress.php">User Progress</a></li>';
         echo  '<li><a href="postperformance.php">Manage User Performance</a></li>';
         
@@ -89,7 +89,7 @@ session_start();
                   echo '<li><a href="manage_signups.php">Manage Competition Signups</a></li>';
                   echo  '<li><a href="dojo.php">Manage Dojo</a></li>';
                   //echo  '<li><a href="#">Manage Class Schedule</a></li>';
-                  // echo  '<li><a href="#">Manage Booking</a></li>';
+                  echo  '<li><a href="masterviewubooking.php">Manage User Booking</a></li>';
                 echo '<li><a href="postmembershipcat.php">Manage membership</a></li>'; 
                 }
                 ?>

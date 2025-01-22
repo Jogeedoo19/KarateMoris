@@ -103,7 +103,7 @@ $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 </head>
 <body>
 <?php include_once '../files/nav.php'; ?>
-
+<br><br> <br><br>
 <div class="container mt-5">
     <h2>Student Performance Tracking</h2>
     

@@ -4,7 +4,6 @@ require_once "../db/util.php";
 
 session_start();
 
-// Redirect to login if user is not logged in
 if (!isset($_SESSION['user_id'])) {
     $_SESSION['error'] = "You must log in first.";
     header("Location: login.php");
@@ -13,21 +12,27 @@ if (!isset($_SESSION['user_id'])) {
 
 $userId = $_SESSION['user_id'];
 
-// Fetch all notes with their associated categories and masters
+// Handle search
+$searchQuery = isset($_GET['search']) ? trim($_GET['search']) : '';
+
+// Modify the query to include search
 $stmt = $pdo->prepare("
     SELECT 
         dojo.*, 
-    
         master.first_name, 
         master.last_name, 
         master.image as master_image
     FROM dojo 
-   
     JOIN master ON dojo.master_id = master.master_id
+    WHERE dojo.address LIKE :search
+    OR dojo.name LIKE :search
 ");
-$stmt->execute();
+
+$searchTerm = "%{$searchQuery}%";
+$stmt->execute(['search' => $searchTerm]);
 $dojos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -42,9 +47,36 @@ $dojos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 <!-- Include navigation -->
 <?php include '../files/nav.php'; ?>
-
+<br><br><br><br>
 <main class="main container mt-5">
-    <h2 class="text-center mb-4">Notes</h2>
+    <h2 class="text-center mb-4">Dojo</h2>
+
+     <!-- Search Form -->
+     <div class="search-container">
+        <form method="GET" class="row justify-content-center g-3">
+            <div class="col-md-8">
+                <div class="input-group">
+                    <input type="text" 
+                           name="search" 
+                           class="form-control search-input" 
+                           placeholder="Search by location or dojo name..."
+                           value="<?= htmlspecialchars($searchQuery) ?>">
+                    <button type="submit" class="btn btn-primary search-button">
+                        <i class="bi bi-search"></i> Search
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <!-- Display Results -->
+    <?php if ($searchQuery && empty($dojos)): ?>
+        <div class="no-results">
+            <h4>No dojos found</h4>
+            <p class="text-muted">Try different search terms or browse all dojos below</p>
+            <a href="?" class="btn btn-outline-primary">Show All Dojos</a>
+        </div>
+    <?php endif; ?>
 
     <!-- Display Notes in Cards -->
     <div class="row">
