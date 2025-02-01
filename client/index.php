@@ -30,18 +30,19 @@ try{
     <title>Home | KarateMoris</title>
     
     <?php include '../files/csslib.php' ?> <!-- including libraries -->
-
+    <link href="../css/toolbar.css" rel="stylesheet">
 </head>
 <body>
 
 <!-- including header and banner -->
-<?php include_once '../files/nav.php' ?>
-
+<?php include_once '../files/nav.php' ?><br><br><br><br><br>
+<?php include_once '../files/toolbar.php' ?>
 
 
 <main class="main">
 
 <?php include_once '../files/hero.php' ?>
+
 
     <!-- Featured Services Section -->
     <section id="featured-services" class="featured-services section light-background">

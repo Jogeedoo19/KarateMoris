@@ -166,8 +166,13 @@ if (isset($_POST['txtname'])) {
                 <label for="txtname"><b>Name</b></label>
                 <input type="text" id="txtname" placeholder="Enter name" name="txtname" required>
 
-                <label for="txtaddr"><b>Address</b></label>
+                <!-- <label for="txtaddr"><b>Address</b></label>
                 <input type="text" id="txtaddr" placeholder="Enter address" name="txtaddr" required>
+                <button type="button" onclick="getLocation()">📍Get Current Location</button> -->
+                <label for="locationSearch"><b>Search Location</b></label>
+                <input type="text" id="locationSearch" placeholder="Type a location..." onkeyup="searchLocation()">
+                <ul id="suggestionsList" style="list-style: none; padding: 0; max-height: 150px; overflow-y: auto; background: white; border: 1px solid #ccc; position: absolute; display: none;"></ul>
+                <input type="hidden" id="txtaddr" name="txtaddr"> <!-- Hidden field for selected address -->
 
                 <label for="txtpnum"><b>Phone Number</b></label>
                 <input type="text" id="txtpnum" placeholder="Enter phone number" name="txtpnum" required>
@@ -250,7 +255,7 @@ function confirmDelete() {
     return confirm('Are you sure you want to delete this dojo?');
 }
 </script>
-
+<script src="../js/api.js"></script>
 <!-- Including footer -->
 <?php include '../files/footer.php'; ?>
 

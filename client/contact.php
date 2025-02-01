@@ -5,12 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
     <?php include '../files/csslib.php' ?> <!-- including libraries -->
-
+    <link href="../css/toolbar.css" rel="stylesheet">
 </head>
 <body>
 
 <!-- including header and banner -->
-<?php include_once '../files/nav.php' ?>
+<?php include_once '../files/nav.php' ?><br><br><br><br><br>
+<?php include_once '../files/toolbar.php' ?>
 
 <br><br>
 <main class="main">

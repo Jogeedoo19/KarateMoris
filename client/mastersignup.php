@@ -143,7 +143,7 @@ if (isset($_POST['signup'])) {
                 </div>
                 <div class="mb-3">
                     <label for="email" class="form-label">Email</label>
-                    <input type="email" class="form-control" id="email" name="email" required value="<?php echo $_POST['email'] ?? ''; ?>">
+                    <input type="email" class="form-control" id="email" name="email" required value="<?php echo $_POST['email'] ?? ''; ?>" onkeydown="if(event.key === 'Enter') sendEmail()">
                 </div>
                 <div class="row mb-3">
                     <div class="col-md-6">
@@ -184,6 +184,8 @@ if (isset($_POST['signup'])) {
             }
         }
     </script>
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script src="../js/emailmaster.js"></script>
     <?php include '../files/footer.php'; ?>
 </body>
 </html>

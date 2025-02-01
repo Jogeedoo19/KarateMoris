@@ -1,0 +1,76 @@
+/* High Contrast Mode */
+.high-contrast {
+    background-color: black !important;
+    color: white !important;
+}
+
+.high-contrast .card,
+.high-contrast .navbar {
+    background-color: #333 !important;
+    border-color: white !important;
+}
+
+.high-contrast a {
+    color: yellow !important;
+}
+
+.high-contrast .btn {
+    background-color: white !important;
+    color: black !important;
+    border: 2px solid white !important;
+}
+
+/* Screen Reader Text */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+}
+
+.show-sr-text .sr-only {
+    position: static;
+    width: auto;
+    height: auto;
+    padding: 5px;
+    margin: 5px 0;
+    overflow: visible;
+    clip: auto;
+    border: 1px solid #ccc;
+    background: #f8f9fa;
+    color: #333;
+}
+
+/* Focus Indicators */
+*:focus {
+    outline: 3px solid #4A90E2 !important;
+    outline-offset: 2px !important;
+}
+
+/* Skip to Main Content Link */
+.skip-link {
+    position: absolute;
+    top: -40px;
+    left: 0;
+    background: #000;
+    color: white;
+    padding: 8px;
+    z-index: 100;
+}
+
+.skip-link:focus {
+    top: 0;
+}
+
+/* Keyboard Navigation Improvements */
+a, button, input, select {
+    transition: outline-offset .25s ease;
+}
+
+a:focus, button:focus, input:focus, select:focus {
+    outline-offset: 4px;
+}

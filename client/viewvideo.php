@@ -39,6 +39,8 @@ $videos = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Videos</title>
     <link href="../css/stylecss.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
     <?php include '../files/csslib.php' ?> <!-- Include Bootstrap and other libraries -->
     <style>
 .video-card {
@@ -128,7 +130,10 @@ $videos = $stmt->fetchAll(PDO::FETCH_ASSOC);
             </div>
         <?php endforeach; ?>
     </div>
-    
+    <!-- Pagination Controls -->
+<div class="w3-center w3-padding-16">
+    <div class="w3-bar" id="pagination"></div>
+</div>
 </main>
 
 
@@ -187,6 +192,6 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 </script>
-
+<script src="../js/pagination.js"></script>
 </body>
 </html>
