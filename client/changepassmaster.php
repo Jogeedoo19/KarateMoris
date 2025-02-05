@@ -78,7 +78,7 @@ if (isset($_POST['btnupdate'])) {
             <div class="container" data-aos="fade-up">
                 <div class="row" data-aos="zoom-in" data-aos-delay="100">
                     <div class="col-md-5 pt-5">
-                        <img src="../images/setting.jpg" class="img-fluid h-50" />
+                        <img src="../images/setting.jpeg" class="img-fluid h-50" />
                     </div>
                     <div class="col-md-6 pt-5 offset-md-1">
                         <h3>

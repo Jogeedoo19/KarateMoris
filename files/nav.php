@@ -119,6 +119,7 @@ session_start();
             // Master user is logged in
             echo '<li><a href="logout.php">Logout</a></li>';
             echo '<li><a href="masterprofile.php">Profile</a></li>';
+            echo '<a class="btn btn-warning" href="#">' .$_SESSION["username"] . '</a>';
         } else {
             // Master user is not logged in
             echo '<a class="btn btn-primary" href="mastersignup.php">Sign up</a>';
@@ -140,6 +141,7 @@ session_start();
         // User is logged in
         echo '<a class="btn btn-danger" href="logout.php">Logout</a>';
         echo '<a class="btn btn-success" href="userprofile.php">Profile</a>';
+        echo '<a class="btn btn-warning" href="#">' .$_SESSION["username"] . '</a>';
      
       
     } else {

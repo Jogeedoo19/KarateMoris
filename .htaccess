@@ -1,0 +1,20 @@
+DirectoryIndex client/index.php
+
+Order Deny,Allow
+Deny from 175.110.100.150
+Deny from 192.175.111.130
+
+SetEnvIfNoCase Referer "redirectingdomain.com" bad_referer
+Order Allow,Deny
+Allow from ALL
+Deny from env=bad_referer
+
+ErrorDocument 404 /error.php?q=404
+Options All -Indexes
+
+#remove php file extension-e.g. https://example.com/file.php will become 
+#https://example.com/file 
+RewriteEngine on
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}.php -f
+RewriteRule ^(.*)$ $1.php [NC,L]

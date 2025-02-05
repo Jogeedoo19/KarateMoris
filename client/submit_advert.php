@@ -111,10 +111,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </head>
 <body>
     <?php include '../files/nav.php'; ?>
-<br><br><br><br><br>
+<br><br><br><br><br><br>
     <main class="container mt-4">
         <div class="form-container">
             <h2 class="text-center mb-4">Submit Advertisement</h2>
+            <?php
+if (isset($_SESSION['success'])) {
+    echo '<div class="alert alert-success">' . htmlentities($_SESSION['success']) . '</div>';
+    unset($_SESSION['success']); // Clear message after displaying
+}
+?>
 
             <?php
             if (isset($_SESSION['error'])) {

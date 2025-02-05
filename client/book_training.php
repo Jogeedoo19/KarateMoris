@@ -316,5 +316,6 @@ $bookedDates = $bookingStmt->fetchAll(PDO::FETCH_COLUMN);
             
         }
     </script>
+     <?php include '../files/footer.php'; ?>
 </body>
 </html>
